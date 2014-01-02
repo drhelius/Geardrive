@@ -75,9 +75,9 @@ Geardrive Z80 core passes all tests in Zexdoc. It passes all tests in Zexall exc
 License
 -------
 
-<i>Gearsystem - Sega Master System / Game Gear Emulator</i>
+<i>Geardrive - Sega Mega Drive / Genesis Emulator</i>
 
-<i>Copyright (C) 2013  Ignacio Sanchez</i>
+<i>Copyright (C) 2014  Ignacio Sanchez</i>
 
 <i>This program is free software: you can redistribute it and/or modify</i>
 <i>it under the terms of the GNU General Public License as published by</i>

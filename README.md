@@ -70,7 +70,7 @@ There is a nice Netbeans + Qt tutorial [here](http://netbeans.org/kb/docs/cnd/qt
 Accuracy Tests
 --------------
 
-Geardrive Z80 core passes all tests in Zexdoc. It passes all tests in Zexall except for BIT n,(HL) due to the undocumented behaviour of the XY flags on these instructions.
+Geardrive Z80 core passes all tests in Zexall, including undocumented instructions and behaviours.
 
 License
 -------

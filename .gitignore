@@ -41,7 +41,7 @@ Thumbs.db
 _UpgradeReport_Files/
 _ReSharper.*/
 
-# Gearsystem Memory Dump
+# Misc files
 *.txt
 *.ini
 *.gen
@@ -61,4 +61,3 @@ ui_*.h
 xcuserdata/
 *.xcexplist
 *.xcsettings
-

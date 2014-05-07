@@ -1,13 +1,13 @@
 # Netbeans files
-/dist/*
-/build/*
-/private/*
+dist/
+build/
+private/
 
 # Mac files
 *.DS_Store
 
 # Visual Studio files
-ipch/*
+ipch/
 [Oo]bj
 [Bb]in
 *.[Cc]ache
@@ -58,7 +58,7 @@ ui_*.h
 
 #Xcode
 *.xcuserstate
-/xcuserdata/*
+xcuserdata/
 *.xcexplist
 *.xcsettings
 

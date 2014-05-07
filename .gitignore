@@ -11,3 +11,5 @@
 *.lai
 *.la
 *.a
+/platforms/macosx/Geardrive/dist/
+/platforms/macosx/Geardrive/build/

@@ -1,15 +1,66 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Netbeans files
+/dist/
+/build/
+/private/
+private.xml
+Makefile-variables.mk
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
+# Mac files
+*.DS_Store
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-/platforms/macosx/Geardrive/dist/
-/platforms/macosx/Geardrive/build/
+# Visual Studio files
+ipch/
+[Oo]bj
+[Bb]in
+*.[Cc]ache
+*.obj
+*.exe
+*.exp
+*.pdb
+*.dll
+*.user
+*.aps
+*.pch
+*.sdf
+*.opensdf
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.ilk
+*.log
+*.zip
+[Dd]ebug*/
+*.lib
+*.sbr
+Thumbs.db
+[Rr]elease*/
+[Tt]est[Rr]esults/
+_UpgradeReport_Files/
+_ReSharper.*/
+
+# Gearsystem Memory Dump
+*.txt
+*.ini
+*.gen
+*.md
+*.bin
+*.zip
+
+# Qt Ignores
+moc_*.cpp
+qt-Debug.mk
+qt-Release.mk
+ui_*.h
+.qmake.stash
+
+#Xcode
+*.xcuserstate
+/xcuserdata/
+*.xcexplist
+*.xcsettings
+

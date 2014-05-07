@@ -2,8 +2,6 @@
 /dist/
 /build/
 /private/
-private.xml
-Makefile-variables.mk
 
 # Mac files
 *.DS_Store

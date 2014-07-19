@@ -17,19 +17,14 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef GEARSYSTEM_H
+#define	GEARSYSTEM_H
 
-int main(int argc, char *argv[])
-{
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+#include "definitions.h"
+#include "geardrive_core.h"
+#include "cartridge.h"
+#include "video.h" 
+#include "input.h" 
+
+#endif	/* GEARSYSTEM_H */
+

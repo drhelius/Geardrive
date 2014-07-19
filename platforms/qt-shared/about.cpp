@@ -17,19 +17,13 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#include "about.h"
 
-int main(int argc, char *argv[])
+About::About()
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
+    widget_.setupUi(this);
+}
+
+About::~About()
+{
 }

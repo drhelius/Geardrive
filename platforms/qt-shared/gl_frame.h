@@ -17,19 +17,39 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef MYGLFRAME_H
+#define MYGLFRAME_H
 
-int main(int argc, char *argv[])
-{
-#ifdef Q_WS_X11
-    XInitThreads();
+#ifndef __APPLE__
+    #include <GL/glew.h>
 #endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+#include <QGLWidget>
+#include "../../src/geardrive.h"
+#include "render_thread.h"
+
+class Emulator;
+
+class GLFrame : public QGLWidget
+{
+    Q_OBJECT
+
+public:
+    explicit GLFrame(QWidget *parent = 0);
+    ~GLFrame();
+    void InitRenderThread(Emulator* emulator);
+    void StopRenderThread();
+    void PauseRenderThread();
+    void ResumeRenderThread();
+    bool IsRunningRenderThread();
+    void SetBilinearFiletering(bool enabled);
+
+protected:
+    void closeEvent(QCloseEvent *evt);
+    void resizeEvent(QResizeEvent *evt);
+    void paintEvent(QPaintEvent *);
+
+private:
+    RenderThread render_thread_;
+};
+
+#endif // MYGLFRAME_H

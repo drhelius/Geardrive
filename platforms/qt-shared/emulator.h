@@ -17,19 +17,34 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef EMULATOR_H
+#define	EMULATOR_H
 
-int main(int argc, char *argv[])
+#include <QMutex>
+#include "../../../src/geardrive.h"
+
+class Emulator
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+public:
+    Emulator();
+    ~Emulator();
+    void Init();
+    void RunToVBlank(GD_Color* frame_buffer);
+    void LoadRom(const char* path);
+    void KeyPressed(GD_Joypads joypad, GD_Keys key);
+    void KeyReleased(GD_Joypads joypad, GD_Keys key);
+    void Pause();
+    void Resume();
+    bool IsPaused();
+    void Reset();
+    void MemoryDump();
+    void SetSoundSettings(bool enabled, int rate);
+    void SaveRam();
+
+private:
+    GearsystemCore* gearsystem_core_;
+    QMutex mutex_;
+};
+
+#endif	/* EMULATOR_H */
+

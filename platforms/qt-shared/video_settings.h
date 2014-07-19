@@ -1,3 +1,4 @@
+//
 /*
  * Gearsystem - Sega Master System / Game Gear Emulator
  * Copyright (C) 2013  Ignacio Sanchez
@@ -17,19 +18,34 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef VIDEOSETTINGS_H
+#define VIDEOSETTINGS_H
 
-int main(int argc, char *argv[])
+#include <QSettings>
+#include "ui_VideoSettings.h"
+
+class GLFrame;
+class Emulator;
+class QColorDialog;
+
+class VideoSettings : public QDialog
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+    Q_OBJECT
+
+public:
+    VideoSettings(GLFrame* gl_frame, Emulator* emulator);
+    ~VideoSettings();
+    void SaveSettings(QSettings& settings);
+    void LoadSettings(QSettings& settings);
+
+public slots:
+    void PressedOK();
+    void PressedCancel();
+
+private:
+    Ui::VideoSettings widget;
+    Emulator* emulator_;
+    GLFrame* gl_frame_;
+};
+
+#endif // VIDEOSETTINGS_H

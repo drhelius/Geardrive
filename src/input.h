@@ -17,19 +17,42 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef INPUT_H
+#define	INPUT_H
 
-int main(int argc, char *argv[])
+#include "definitions.h"
+
+enum GD_Keys
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+    kKeyUp,
+    kKeyDown,
+    kKeyLeft,
+    kKeyRight,
+    kKeyA,
+    kKeyB,
+    kKeyC,
+    kKeyStart
+};
+
+enum GD_Joypads
+{
+    kJoypad1,
+    kJoypad2
+};
+
+class Input
+{
+public:
+    Input();
+    void Init();
+    void Reset();
+    void Tick(unsigned int clock_cycles);
+    void KeyPressed(GD_Joypads joypad, GD_Keys key);
+    void KeyReleased(GD_Joypads joypad, GD_Keys key);
+
+private:
+    void Update();
+};
+
+#endif	/* INPUT_H */
+

@@ -17,19 +17,35 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef SOUNDSETTINGS_H
+#define SOUNDSETTINGS_H
 
-int main(int argc, char *argv[])
+#include <QSettings>
+#include "ui_SoundSettings.h"
+
+class GLFrame;
+class Emulator;
+
+class SoundSettings : public QDialog
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+    Q_OBJECT
+
+public:
+    SoundSettings(GLFrame* gl_frame, Emulator* emulator);
+    ~SoundSettings();
+    void SaveSettings(QSettings& settings);
+    void LoadSettings(QSettings& settings);
+
+public slots:
+    void PressedOK();
+    void PressedCancel();
+
+private:
+    Ui::SoundSettings widget;
+    GLFrame* gl_frame_;
+    Emulator* emulator_;
+    int rate_;
+    bool enabled_;
+};
+
+#endif // SOUNDSETTINGS_H

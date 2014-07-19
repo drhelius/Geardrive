@@ -45,45 +45,47 @@ OBJECTS_DIR   = build/Debug/CLang-MacOSX/
 
 ####### Files
 
-SOURCES       = ../../../src/Audio.cpp \
-		../../../src/Cartridge.cpp \
-		../../../src/GeardriveCore.cpp \
-		../../../src/Input.cpp \
-		../../qt-shared/About.cpp \
-		../../qt-shared/Emulator.cpp \
-		../../qt-shared/GLFrame.cpp \
-		../../qt-shared/InputSettings.cpp \
-		../../qt-shared/MainWindow.cpp \
-		../../qt-shared/RenderThread.cpp \
-		../../qt-shared/SoundSettings.cpp \
-		../../qt-shared/VideoSettings.cpp \
-		../../qt-shared/main.cpp moc_About.cpp \
-		moc_GLFrame.cpp \
-		moc_InputSettings.cpp \
-		moc_MainWindow.cpp \
-		moc_RenderThread.cpp \
-		moc_SoundSettings.cpp \
-		moc_VideoSettings.cpp
-OBJECTS       = build/Debug/CLang-MacOSX/Audio.o \
-		build/Debug/CLang-MacOSX/Cartridge.o \
-		build/Debug/CLang-MacOSX/GeardriveCore.o \
-		build/Debug/CLang-MacOSX/Input.o \
-		build/Debug/CLang-MacOSX/About.o \
-		build/Debug/CLang-MacOSX/Emulator.o \
-		build/Debug/CLang-MacOSX/GLFrame.o \
-		build/Debug/CLang-MacOSX/InputSettings.o \
-		build/Debug/CLang-MacOSX/MainWindow.o \
-		build/Debug/CLang-MacOSX/RenderThread.o \
-		build/Debug/CLang-MacOSX/SoundSettings.o \
-		build/Debug/CLang-MacOSX/VideoSettings.o \
+SOURCES       = ../../../src/audio.cpp \
+		../../../src/cartridge.cpp \
+		../../../src/geardrive_core.cpp \
+		../../../src/input.cpp \
+		../../../src/video.cpp \
+		../../qt-shared/about.cpp \
+		../../qt-shared/emulator.cpp \
+		../../qt-shared/gl_frame.cpp \
+		../../qt-shared/input_settings.cpp \
+		../../qt-shared/main.cpp \
+		../../qt-shared/main_window.cpp \
+		../../qt-shared/render_thread.cpp \
+		../../qt-shared/sound_settings.cpp \
+		../../qt-shared/video_settings.cpp moc_about.cpp \
+		moc_gl_frame.cpp \
+		moc_input_settings.cpp \
+		moc_main_window.cpp \
+		moc_render_thread.cpp \
+		moc_sound_settings.cpp \
+		moc_video_settings.cpp
+OBJECTS       = build/Debug/CLang-MacOSX/audio.o \
+		build/Debug/CLang-MacOSX/cartridge.o \
+		build/Debug/CLang-MacOSX/geardrive_core.o \
+		build/Debug/CLang-MacOSX/input.o \
+		build/Debug/CLang-MacOSX/video.o \
+		build/Debug/CLang-MacOSX/about.o \
+		build/Debug/CLang-MacOSX/emulator.o \
+		build/Debug/CLang-MacOSX/gl_frame.o \
+		build/Debug/CLang-MacOSX/input_settings.o \
 		build/Debug/CLang-MacOSX/main.o \
-		build/Debug/CLang-MacOSX/moc_About.o \
-		build/Debug/CLang-MacOSX/moc_GLFrame.o \
-		build/Debug/CLang-MacOSX/moc_InputSettings.o \
-		build/Debug/CLang-MacOSX/moc_MainWindow.o \
-		build/Debug/CLang-MacOSX/moc_RenderThread.o \
-		build/Debug/CLang-MacOSX/moc_SoundSettings.o \
-		build/Debug/CLang-MacOSX/moc_VideoSettings.o
+		build/Debug/CLang-MacOSX/main_window.o \
+		build/Debug/CLang-MacOSX/render_thread.o \
+		build/Debug/CLang-MacOSX/sound_settings.o \
+		build/Debug/CLang-MacOSX/video_settings.o \
+		build/Debug/CLang-MacOSX/moc_about.o \
+		build/Debug/CLang-MacOSX/moc_gl_frame.o \
+		build/Debug/CLang-MacOSX/moc_input_settings.o \
+		build/Debug/CLang-MacOSX/moc_main_window.o \
+		build/Debug/CLang-MacOSX/moc_render_thread.o \
+		build/Debug/CLang-MacOSX/moc_sound_settings.o \
+		build/Debug/CLang-MacOSX/moc_video_settings.o
 DIST          = ../../../../Qt5.2.1/5.2.1/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.2.1/5.2.1/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt5.2.1/5.2.1/clang_64/mkspecs/features/device_config.prf \
@@ -469,7 +471,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d build/Debug/CLang-MacOSX/Geardrive1.0.0 || mkdir -p build/Debug/CLang-MacOSX/Geardrive1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) build/Debug/CLang-MacOSX/Geardrive1.0.0/ && $(COPY_FILE) --parents ../../../src/Audio.h ../../../src/Cartridge.h ../../../src/Geardrive.h ../../../src/GeardriveCore.h ../../../src/Input.h ../../../src/definitions.h ../../qt-shared/About.h ../../qt-shared/Emulator.h ../../qt-shared/GLFrame.h ../../qt-shared/InputSettings.h ../../qt-shared/MainWindow.h ../../qt-shared/RenderThread.h ../../qt-shared/SoundSettings.h ../../qt-shared/VideoSettings.h build/Debug/CLang-MacOSX/Geardrive1.0.0/ && $(COPY_FILE) --parents ../../../src/Audio.cpp ../../../src/Cartridge.cpp ../../../src/GeardriveCore.cpp ../../../src/Input.cpp ../../qt-shared/About.cpp ../../qt-shared/Emulator.cpp ../../qt-shared/GLFrame.cpp ../../qt-shared/InputSettings.cpp ../../qt-shared/MainWindow.cpp ../../qt-shared/RenderThread.cpp ../../qt-shared/SoundSettings.cpp ../../qt-shared/VideoSettings.cpp ../../qt-shared/main.cpp build/Debug/CLang-MacOSX/Geardrive1.0.0/ && $(COPY_FILE) --parents ../../qt-shared/About.ui ../../qt-shared/InputSettings.ui ../../qt-shared/MainWindow.ui ../../qt-shared/SoundSettings.ui ../../qt-shared/VideoSettings.ui build/Debug/CLang-MacOSX/Geardrive1.0.0/ && (cd `dirname build/Debug/CLang-MacOSX/Geardrive1.0.0` && $(TAR) Geardrive1.0.0.tar Geardrive1.0.0 && $(COMPRESS) Geardrive1.0.0.tar) && $(MOVE) `dirname build/Debug/CLang-MacOSX/Geardrive1.0.0`/Geardrive1.0.0.tar.gz . && $(DEL_FILE) -r build/Debug/CLang-MacOSX/Geardrive1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) build/Debug/CLang-MacOSX/Geardrive1.0.0/ && $(COPY_FILE) --parents ../../../src/audio.h ../../../src/cartridge.h ../../../src/definitions.h ../../../src/geardrive.h ../../../src/geardrive_core.h ../../../src/input.h ../../../src/video.h ../../qt-shared/about.h ../../qt-shared/emulator.h ../../qt-shared/gl_frame.h ../../qt-shared/input_settings.h ../../qt-shared/main_window.h ../../qt-shared/render_thread.h ../../qt-shared/sound_settings.h ../../qt-shared/video_settings.h build/Debug/CLang-MacOSX/Geardrive1.0.0/ && $(COPY_FILE) --parents ../../../src/audio.cpp ../../../src/cartridge.cpp ../../../src/geardrive_core.cpp ../../../src/input.cpp ../../../src/video.cpp ../../qt-shared/about.cpp ../../qt-shared/emulator.cpp ../../qt-shared/gl_frame.cpp ../../qt-shared/input_settings.cpp ../../qt-shared/main.cpp ../../qt-shared/main_window.cpp ../../qt-shared/render_thread.cpp ../../qt-shared/sound_settings.cpp ../../qt-shared/video_settings.cpp build/Debug/CLang-MacOSX/Geardrive1.0.0/ && $(COPY_FILE) --parents ../../qt-shared/About.ui ../../qt-shared/InputSettings.ui ../../qt-shared/MainWindow.ui ../../qt-shared/SoundSettings.ui ../../qt-shared/VideoSettings.ui build/Debug/CLang-MacOSX/Geardrive1.0.0/ && (cd `dirname build/Debug/CLang-MacOSX/Geardrive1.0.0` && $(TAR) Geardrive1.0.0.tar Geardrive1.0.0 && $(COMPRESS) Geardrive1.0.0.tar) && $(MOVE) `dirname build/Debug/CLang-MacOSX/Geardrive1.0.0`/Geardrive1.0.0.tar.gz . && $(DEL_FILE) -r build/Debug/CLang-MacOSX/Geardrive1.0.0
 
 
 clean:compiler_clean 
@@ -494,64 +496,70 @@ compiler_objective_c_make_all:
 compiler_objective_c_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_About.cpp moc_GLFrame.cpp moc_InputSettings.cpp moc_MainWindow.cpp moc_RenderThread.cpp moc_SoundSettings.cpp moc_VideoSettings.cpp
+compiler_moc_header_make_all: moc_about.cpp moc_gl_frame.cpp moc_input_settings.cpp moc_main_window.cpp moc_render_thread.cpp moc_sound_settings.cpp moc_video_settings.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_About.cpp moc_GLFrame.cpp moc_InputSettings.cpp moc_MainWindow.cpp moc_RenderThread.cpp moc_SoundSettings.cpp moc_VideoSettings.cpp
-moc_About.cpp: ui_About.h \
-		../../qt-shared/About.h
-	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/About.h -o moc_About.cpp
+	-$(DEL_FILE) moc_about.cpp moc_gl_frame.cpp moc_input_settings.cpp moc_main_window.cpp moc_render_thread.cpp moc_sound_settings.cpp moc_video_settings.cpp
+moc_about.cpp: ui_About.h \
+		../../qt-shared/about.h
+	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/about.h -o moc_about.cpp
 
-moc_GLFrame.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
+moc_gl_frame.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/qgl.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/RenderThread.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/render_thread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h \
-		../../qt-shared/GLFrame.h
-	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/GLFrame.h -o moc_GLFrame.cpp
+		../../qt-shared/gl_frame.h
+	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/gl_frame.h -o moc_gl_frame.cpp
 
-moc_InputSettings.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
+moc_input_settings.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
 		ui_InputSettings.h \
-		../../qt-shared/InputSettings.h
-	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/InputSettings.h -o moc_InputSettings.cpp
+		../../qt-shared/input_settings.h
+	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/input_settings.h -o moc_input_settings.cpp
 
-moc_MainWindow.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+moc_main_window.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QShortcut \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qshortcut.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/MainWindow.h
-	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/MainWindow.h -o moc_MainWindow.cpp
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/main_window.h
+	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/main_window.h -o moc_main_window.cpp
 
-moc_RenderThread.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
+moc_render_thread.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/RenderThread.h
-	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/RenderThread.h -o moc_RenderThread.cpp
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/render_thread.h
+	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/render_thread.h -o moc_render_thread.cpp
 
-moc_SoundSettings.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
+moc_sound_settings.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
 		ui_SoundSettings.h \
-		../../qt-shared/SoundSettings.h
-	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/SoundSettings.h -o moc_SoundSettings.cpp
+		../../qt-shared/sound_settings.h
+	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/sound_settings.h -o moc_sound_settings.cpp
 
-moc_VideoSettings.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
+moc_video_settings.cpp: ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
 		ui_VideoSettings.h \
-		../../qt-shared/VideoSettings.h
-	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/VideoSettings.h -o moc_VideoSettings.cpp
+		../../qt-shared/video_settings.h
+	/Users/nacho/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) ../../qt-shared/video_settings.h -o moc_video_settings.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -585,205 +593,227 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-build/Debug/CLang-MacOSX/Audio.o: ../../../src/Audio.cpp ../../../src/Audio.h \
+build/Debug/CLang-MacOSX/audio.o: ../../../src/audio.cpp ../../../src/audio.h \
 		../../../src/definitions.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/Audio.o ../../../src/Audio.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/audio.o ../../../src/audio.cpp
 
-build/Debug/CLang-MacOSX/Cartridge.o: ../../../src/Cartridge.cpp ../../../src/Cartridge.h \
+build/Debug/CLang-MacOSX/cartridge.o: ../../../src/cartridge.cpp ../../../src/cartridge.h \
 		../../../src/definitions.h \
 		../../../src/miniz/miniz.c
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/Cartridge.o ../../../src/Cartridge.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/cartridge.o ../../../src/cartridge.cpp
 
-build/Debug/CLang-MacOSX/GeardriveCore.o: ../../../src/GeardriveCore.cpp ../../../src/GeardriveCore.h \
+build/Debug/CLang-MacOSX/geardrive_core.o: ../../../src/geardrive_core.cpp ../../../src/geardrive_core.h \
+		../../../src/video.h \
 		../../../src/definitions.h \
-		../../../src/Input.h \
-		../../../src/Cartridge.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/GeardriveCore.o ../../../src/GeardriveCore.cpp
+		../../../src/input.h \
+		../../../src/audio.h \
+		../../../src/cartridge.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/geardrive_core.o ../../../src/geardrive_core.cpp
 
-build/Debug/CLang-MacOSX/Input.o: ../../../src/Input.cpp ../../../src/Input.h \
+build/Debug/CLang-MacOSX/input.o: ../../../src/input.cpp ../../../src/input.h \
 		../../../src/definitions.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/Input.o ../../../src/Input.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/input.o ../../../src/input.cpp
 
-build/Debug/CLang-MacOSX/About.o: ../../qt-shared/About.cpp ../../qt-shared/About.h \
+build/Debug/CLang-MacOSX/video.o: ../../../src/video.cpp ../../../src/video.h \
+		../../../src/definitions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/video.o ../../../src/video.cpp
+
+build/Debug/CLang-MacOSX/about.o: ../../qt-shared/about.cpp ../../qt-shared/about.h \
 		ui_About.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/About.o ../../qt-shared/About.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/about.o ../../qt-shared/about.cpp
 
-build/Debug/CLang-MacOSX/Emulator.o: ../../qt-shared/Emulator.cpp ../../qt-shared/Emulator.h \
+build/Debug/CLang-MacOSX/emulator.o: ../../qt-shared/emulator.cpp ../../qt-shared/emulator.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QMutex \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qmutex.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/Emulator.o ../../qt-shared/Emulator.cpp
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/emulator.o ../../qt-shared/emulator.cpp
 
-build/Debug/CLang-MacOSX/GLFrame.o: ../../qt-shared/GLFrame.cpp ../../qt-shared/GLFrame.h \
+build/Debug/CLang-MacOSX/gl_frame.o: ../../qt-shared/gl_frame.cpp ../../qt-shared/gl_frame.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/qgl.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/RenderThread.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/render_thread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QResizeEvent \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLContext
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/GLFrame.o ../../qt-shared/GLFrame.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/gl_frame.o ../../qt-shared/gl_frame.cpp
 
-build/Debug/CLang-MacOSX/InputSettings.o: ../../qt-shared/InputSettings.cpp ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
-		../../qt-shared/InputSettings.h \
+build/Debug/CLang-MacOSX/input_settings.o: ../../qt-shared/input_settings.cpp ../../qt-shared/input_settings.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
 		ui_InputSettings.h \
-		../../qt-shared/GLFrame.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
+		../../qt-shared/gl_frame.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/qgl.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/RenderThread.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/render_thread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/InputSettings.o ../../qt-shared/InputSettings.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/input_settings.o ../../qt-shared/input_settings.cpp
 
-build/Debug/CLang-MacOSX/MainWindow.o: ../../qt-shared/MainWindow.cpp ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QFileDialog \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qfiledialog.h \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDesktopWidget \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdesktopwidget.h \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
-		../../qt-shared/MainWindow.h \
+build/Debug/CLang-MacOSX/main.o: ../../qt-shared/main.cpp ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h \
+		../../qt-shared/main_window.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QShortcut \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qshortcut.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/main.o ../../qt-shared/main.cpp
+
+build/Debug/CLang-MacOSX/main_window.o: ../../qt-shared/main_window.cpp ../../qt-shared/main_window.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QShortcut \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qshortcut.h \
+		../../../src/geardrive.h \
+		../../../src/definitions.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QFileDialog \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qfiledialog.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QDesktopWidget \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qdesktopwidget.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
 		ui_MainWindow.h \
-		../../qt-shared/GLFrame.h \
+		../../qt-shared/gl_frame.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/qgl.h \
-		../../qt-shared/RenderThread.h \
+		../../qt-shared/render_thread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h \
-		../../qt-shared/Emulator.h \
+		../../qt-shared/emulator.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QMutex \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qmutex.h \
-		../../qt-shared/InputSettings.h \
+		../../qt-shared/input_settings.h \
 		ui_InputSettings.h \
-		../../qt-shared/SoundSettings.h \
+		../../qt-shared/sound_settings.h \
 		ui_SoundSettings.h \
-		../../qt-shared/VideoSettings.h \
+		../../qt-shared/video_settings.h \
 		ui_VideoSettings.h \
-		../../qt-shared/About.h \
+		../../qt-shared/about.h \
 		ui_About.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/MainWindow.o ../../qt-shared/MainWindow.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/main_window.o ../../qt-shared/main_window.cpp
 
-build/Debug/CLang-MacOSX/RenderThread.o: ../../qt-shared/RenderThread.cpp ../../qt-shared/RenderThread.h \
+build/Debug/CLang-MacOSX/render_thread.o: ../../qt-shared/render_thread.cpp ../../qt-shared/render_thread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/GLFrame.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/gl_frame.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/qgl.h \
-		../../qt-shared/Emulator.h \
+		../../qt-shared/emulator.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QMutex \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qmutex.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/RenderThread.o ../../qt-shared/RenderThread.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/render_thread.o ../../qt-shared/render_thread.cpp
 
-build/Debug/CLang-MacOSX/SoundSettings.o: ../../qt-shared/SoundSettings.cpp ../../qt-shared/SoundSettings.h \
+build/Debug/CLang-MacOSX/sound_settings.o: ../../qt-shared/sound_settings.cpp ../../qt-shared/sound_settings.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
 		ui_SoundSettings.h \
-		../../qt-shared/GLFrame.h \
+		../../qt-shared/gl_frame.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/qgl.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/RenderThread.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/render_thread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h \
-		../../qt-shared/Emulator.h \
+		../../qt-shared/emulator.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QMutex \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qmutex.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/SoundSettings.o ../../qt-shared/SoundSettings.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/sound_settings.o ../../qt-shared/sound_settings.cpp
 
-build/Debug/CLang-MacOSX/VideoSettings.o: ../../qt-shared/VideoSettings.cpp ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QColorDialog \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcolordialog.h \
-		../../qt-shared/VideoSettings.h \
+build/Debug/CLang-MacOSX/video_settings.o: ../../qt-shared/video_settings.cpp ../../qt-shared/video_settings.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QSettings \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qsettings.h \
 		ui_VideoSettings.h \
-		../../qt-shared/GLFrame.h \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QColorDialog \
+		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcolordialog.h \
+		../../qt-shared/gl_frame.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/QGLWidget \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtOpenGL.framework/Versions/5/Headers/qgl.h \
-		../../../src/Geardrive.h \
+		../../../src/geardrive.h \
 		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h \
-		../../qt-shared/RenderThread.h \
+		../../../src/geardrive_core.h \
+		../../../src/video.h \
+		../../../src/input.h \
+		../../../src/cartridge.h \
+		../../qt-shared/render_thread.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QThread \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qthread.h \
-		../../qt-shared/Emulator.h \
+		../../qt-shared/emulator.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/QMutex \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qmutex.h \
-		../../qt-shared/MainWindow.h \
+		../../qt-shared/main_window.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QShortcut \
 		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qshortcut.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/VideoSettings.o ../../qt-shared/VideoSettings.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/video_settings.o ../../qt-shared/video_settings.cpp
 
-build/Debug/CLang-MacOSX/main.o: ../../qt-shared/main.cpp ../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h \
-		../../qt-shared/MainWindow.h \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/QKeyEvent \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Versions/5/Headers/qevent.h \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QShortcut \
-		../../../../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qshortcut.h \
-		../../../src/Geardrive.h \
-		../../../src/definitions.h \
-		../../../src/GeardriveCore.h \
-		../../../src/Cartridge.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/main.o ../../qt-shared/main.cpp
+build/Debug/CLang-MacOSX/moc_about.o: moc_about.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_about.o moc_about.cpp
 
-build/Debug/CLang-MacOSX/moc_About.o: moc_About.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_About.o moc_About.cpp
+build/Debug/CLang-MacOSX/moc_gl_frame.o: moc_gl_frame.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_gl_frame.o moc_gl_frame.cpp
 
-build/Debug/CLang-MacOSX/moc_GLFrame.o: moc_GLFrame.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_GLFrame.o moc_GLFrame.cpp
+build/Debug/CLang-MacOSX/moc_input_settings.o: moc_input_settings.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_input_settings.o moc_input_settings.cpp
 
-build/Debug/CLang-MacOSX/moc_InputSettings.o: moc_InputSettings.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_InputSettings.o moc_InputSettings.cpp
+build/Debug/CLang-MacOSX/moc_main_window.o: moc_main_window.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_main_window.o moc_main_window.cpp
 
-build/Debug/CLang-MacOSX/moc_MainWindow.o: moc_MainWindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_MainWindow.o moc_MainWindow.cpp
+build/Debug/CLang-MacOSX/moc_render_thread.o: moc_render_thread.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_render_thread.o moc_render_thread.cpp
 
-build/Debug/CLang-MacOSX/moc_RenderThread.o: moc_RenderThread.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_RenderThread.o moc_RenderThread.cpp
+build/Debug/CLang-MacOSX/moc_sound_settings.o: moc_sound_settings.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_sound_settings.o moc_sound_settings.cpp
 
-build/Debug/CLang-MacOSX/moc_SoundSettings.o: moc_SoundSettings.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_SoundSettings.o moc_SoundSettings.cpp
-
-build/Debug/CLang-MacOSX/moc_VideoSettings.o: moc_VideoSettings.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_VideoSettings.o moc_VideoSettings.cpp
+build/Debug/CLang-MacOSX/moc_video_settings.o: moc_video_settings.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Debug/CLang-MacOSX/moc_video_settings.o moc_video_settings.cpp
 
 ####### Install
 

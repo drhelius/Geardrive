@@ -17,19 +17,16 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef OPCODE_NAMES_H
+#define	OPCODE_NAMES_H
 
-int main(int argc, char *argv[])
-{
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+#include "opcodexx_names.h"
+#include "opcodecb_names.h"
+#include "opcodeed_names.h"
+#include "opcodedd_names.h"
+#include "opcodefd_names.h"
+#include "opcodeddcb_names.h"
+#include "opcodefdcb_names.h"
+
+#endif	/* OPCODE_NAMES_H */
+

@@ -17,19 +17,44 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef EIGHTBITREGISTER_H
+#define	EIGHTBITREGISTER_H
 
-int main(int argc, char *argv[])
+#include "definitions.h"
+
+class EightBitRegister
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
+public:
+    EightBitRegister() : m_Value(0) { }
+    void SetValue(u8 value);
+    u8 GetValue() const;
+    void Increment();
+    void Decrement();
+
+private:
+    u8 m_Value;
+};
+
+
+inline void EightBitRegister::SetValue(u8 value)
+{
+    this->m_Value = value;
 }
+
+inline u8 EightBitRegister::GetValue() const
+{
+    return m_Value;
+}
+
+inline void EightBitRegister::Increment()
+{
+    m_Value++;
+}
+
+inline void EightBitRegister::Decrement()
+{
+    m_Value--;
+}
+
+#endif	/* EIGHTBITREGISTER_H */
+

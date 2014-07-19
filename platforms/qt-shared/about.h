@@ -17,19 +17,21 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#ifndef ABOUT_H
+#define ABOUT_H
 
-int main(int argc, char *argv[])
+#include "ui_About.h"
+
+class About : public QDialog
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
-}
+    Q_OBJECT
+
+public:
+    About();
+    ~About();
+
+private:
+    Ui::About widget_;
+};
+
+#endif // ABOUT_H

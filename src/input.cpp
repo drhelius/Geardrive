@@ -17,19 +17,40 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#include "input.h"
 
-int main(int argc, char *argv[])
+
+Input::Input()
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
+
+}
+
+void Input::Init()
+{
+    Reset();
+}
+
+void Input::Reset()
+{
+
+}
+
+void Input::Tick(unsigned int clock_cycles)
+{
+ 
+}
+
+void Input::KeyPressed(GD_Joypads joypad, GD_Keys key)
+{
+ 
+}
+
+void Input::KeyReleased(GD_Joypads joypad, GD_Keys key)
+{
+
+}
+
+void Input::Update()
+{
+
 }

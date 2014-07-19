@@ -17,19 +17,69 @@
  * 
  */
 
-#include <QApplication>
-#include "main_window.h"
-#ifdef Q_WS_X11
-    #include <X11/Xlib.h>
-#endif
+#include "Video.h"
 
-int main(int argc, char *argv[])
+Video::Video()
 {
-#ifdef Q_WS_X11
-    XInitThreads();
-#endif
-    QApplication application(argc, argv);
-    MainWindow window;
-    window.show();
-    return application.exec();
+    
+}
+
+Video::~Video()
+{
+    
+}
+
+void Video::Init()
+{
+    Reset(false);
+}
+
+void Video::Reset(bool is_pal)
+{
+
+}
+
+bool Video::Tick(unsigned int clock_cycles, GD_Color* frame_buffer)
+{
+    return true;
+}
+
+void Video::LatchHCounter()
+{
+    
+}
+
+u8 Video::GetVCounter()
+{
+    return 0;
+}
+
+u8 Video::GetHCounter()
+{
+    return 0;
+}
+
+u8 Video::GetDataPort()
+{
+    return 0;
+}
+
+u8 Video::GetStatusFlags()
+{
+    return 0;
+}
+
+void Video::WriteData(u8 data)
+{
+    
+}
+
+void Video::WriteControl(u8 control)
+{
+    
+}
+
+void Video::ScanLine(int line)
+{
+    
 }

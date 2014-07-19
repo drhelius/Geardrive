@@ -1,6 +1,6 @@
 /*
- * Gearsystem - Sega Master System / Game Gear Emulator
- * Copyright (C) 2013  Ignacio Sanchez
+ * Geardrive - Sega Mega Drive / Genesis Emulator
+ * Copyright (C) 2014  Ignacio Sanchez Gines
 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  * along with this program.  If not, see http://www.gnu.org/licenses/ 
  * 
  */
+
 #include "main_window.h"
 
 #include <QFileDialog>

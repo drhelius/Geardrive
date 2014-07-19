@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef GEARSYSTEM_H
-#define	GEARSYSTEM_H
+#ifndef GD_GEARSYSTEM_H_
+#define	GD_GEARSYSTEM_H_
 
 #include "definitions.h"
 #include "geardrive_core.h"
@@ -26,5 +26,5 @@
 #include "video.h" 
 #include "input.h" 
 
-#endif	/* GEARSYSTEM_H */
+#endif // GD_GEARSYSTEM_H_
 

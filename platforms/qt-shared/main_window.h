@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef GD_MAINWINDOW_H_
+#define GD_MAINWINDOW_H_
 
 #include <QMainWindow>
 #include <QKeyEvent>
@@ -100,4 +100,4 @@ private:
     About* about_;
 };
 
-#endif // MAINWINDOW_H
+#endif // GD_MAINWINDOW_H_

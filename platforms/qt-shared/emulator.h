@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef EMULATOR_H
-#define	EMULATOR_H
+#ifndef GD_EMULATOR_H_
+#define	GD_EMULATOR_H_
 
 #include <QMutex>
 #include "../../../src/geardrive.h"
@@ -42,9 +42,9 @@ public:
     void SaveRam();
 
 private:
-    GearsystemCore* gearsystem_core_;
+    GeardriveCore* gearsystem_core_;
     QMutex mutex_;
 };
 
-#endif	/* EMULATOR_H */
+#endif // GD_EMULATOR_H_
 

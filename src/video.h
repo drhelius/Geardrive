@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef VIDEO_H
-#define	VIDEO_H
+#ifndef GD_VIDEO_H_
+#define	GD_VIDEO_H_
 
 #include "definitions.h"
 
@@ -57,5 +57,5 @@ private:
     void ScanLine(int line);
 };
 
-#endif	/* VIDEO_H */
+#endif // GD_VIDEO_H_
 

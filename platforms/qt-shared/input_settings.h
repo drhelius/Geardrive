@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef _INPUTSETTINGS_H
-#define	_INPUTSETTINGS_H
+#ifndef GD_INPUTSETTINGS_H_
+#define	GD_INPUTSETTINGS_H_
 
 #include <QSettings>
 #include "ui_InputSettings.h"
@@ -57,4 +57,4 @@ private:
     GLFrame* gl_frame_;
 };
 
-#endif	/* _INPUTSETTINGS_H */
+#endif // GD_INPUTSETTINGS_H_

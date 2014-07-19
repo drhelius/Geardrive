@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef INPUT_H
-#define	INPUT_H
+#ifndef GD_INPUT_H_
+#define	GD_INPUT_H_
 
 #include "definitions.h"
 
@@ -54,5 +54,5 @@ private:
     void Update();
 };
 
-#endif	/* INPUT_H */
+#endif // GD_INPUT_H_
 

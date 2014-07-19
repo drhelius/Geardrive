@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef DEFINITIONS_H
-#define	DEFINITIONS_H
+#ifndef GD_DEFINITIONS_H_
+#define	GD_DEFINITIONS_H_
 
 #include <cstdarg>
 #include <cstdlib>
@@ -94,5 +94,5 @@ inline u8 FlipBit(const u8 value, const u8 bit)
     return value ^ (0x01 << bit);
 }
 
-#endif	/* DEFINITIONS_H */
+#endif // GD_DEFINITIONS_H_
 

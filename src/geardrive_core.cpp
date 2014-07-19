@@ -31,7 +31,7 @@
 //#include "SmsIOPorts.h"
 //#include "GameGearIOPorts.h"
 
-GearsystemCore::GearsystemCore()
+GeardriveCore::GeardriveCore()
 {
 //    InitPointer(m_pMemory);
 //    InitPointer(m_pProcessor);
@@ -47,7 +47,7 @@ GearsystemCore::GearsystemCore()
     paused_ = true;
 }
 
-GearsystemCore::~GearsystemCore()
+GeardriveCore::~GeardriveCore()
 {
 #ifdef DEBUG_GEARSYSTEM
     if (cartridge_->IsReady())
@@ -80,7 +80,7 @@ GearsystemCore::~GearsystemCore()
 //    SafeDelete(m_pMemory);
 }
 
-void GearsystemCore::Init()
+void GeardriveCore::Init()
 {
     Log("-=:: GEARDRIVE %1.1f ::=-", GEARDRIVE_VERSION);
 
@@ -103,7 +103,7 @@ void GearsystemCore::Init()
     InitMemoryRules();
 }
 
-void GearsystemCore::RunToVBlank(GD_Color* frame_Buffer)
+void GeardriveCore::RunToVBlank(GD_Color* frame_Buffer)
 {
     if (!paused_ && cartridge_->IsReady())
     {
@@ -120,7 +120,7 @@ void GearsystemCore::RunToVBlank(GD_Color* frame_Buffer)
     }
 }
 
-bool GearsystemCore::LoadROM(const char* path)
+bool GeardriveCore::LoadROM(const char* path)
 {
 #ifdef DEBUG_GEARSYSTEM
     if (cartridge_->IsReady())
@@ -163,22 +163,22 @@ bool GearsystemCore::LoadROM(const char* path)
 //    return m_pMemory;
 //}
 
-Cartridge* GearsystemCore::GetCartridge()
+Cartridge* GeardriveCore::GetCartridge()
 {
     return cartridge_;
 }
 
-void GearsystemCore::KeyPressed(GD_Joypads joypad, GD_Keys key)
+void GeardriveCore::KeyPressed(GD_Joypads joypad, GD_Keys key)
 {
     input_->KeyPressed(joypad, key);
 }
 
-void GearsystemCore::KeyReleased(GD_Joypads joypad, GD_Keys key)
+void GeardriveCore::KeyReleased(GD_Joypads joypad, GD_Keys key)
 {
     input_->KeyReleased(joypad, key);
 }
 
-void GearsystemCore::Pause(bool paused)
+void GeardriveCore::Pause(bool paused)
 {
     if (paused)
     {
@@ -191,12 +191,12 @@ void GearsystemCore::Pause(bool paused)
     paused_ = paused;
 }
 
-bool GearsystemCore::IsPaused()
+bool GeardriveCore::IsPaused()
 {
     return paused_;
 }
 
-void GearsystemCore::ResetROM()
+void GeardriveCore::ResetROM()
 {
     if (cartridge_->IsReady())
     {
@@ -207,7 +207,7 @@ void GearsystemCore::ResetROM()
     }
 }
 
-void GearsystemCore::EnableSound(bool enabled)
+void GeardriveCore::EnableSound(bool enabled)
 {
     if (enabled)
     {
@@ -220,18 +220,18 @@ void GearsystemCore::EnableSound(bool enabled)
     audio_->Enable(enabled);
 }
 
-void GearsystemCore::SetSoundSampleRate(int rate)
+void GeardriveCore::SetSoundSampleRate(int rate)
 {
     Log("Geardrive sound sample rate: %d", rate);
     audio_->SetSampleRate(rate);
 }
 
-void GearsystemCore::SaveRam()
+void GeardriveCore::SaveRam()
 {
     SaveRam(NULL);
 }
 
-void GearsystemCore::SaveRam(const char* path)
+void GeardriveCore::SaveRam(const char* path)
 {
 //    if (m_pCartridge->IsReady() && IsValidPointer(m_pMemory->GetCurrentRule()) && m_pMemory->GetCurrentRule()->PersistedRAM())
 //    {
@@ -264,12 +264,12 @@ void GearsystemCore::SaveRam(const char* path)
 //    }
 }
 
-void GearsystemCore::LoadRam()
+void GeardriveCore::LoadRam()
 {
     LoadRam(NULL);
 }
 
-void GearsystemCore::LoadRam(const char* path)
+void GeardriveCore::LoadRam(const char* path)
 {
 //    if (m_pCartridge->IsReady() && IsValidPointer(m_pMemory->GetCurrentRule()))
 //    {
@@ -322,19 +322,19 @@ void GearsystemCore::LoadRam(const char* path)
 //    }
 }
 
-float GearsystemCore::GetVersion()
+float GeardriveCore::GetVersion()
 {
     return GEARDRIVE_VERSION;
 }
 
-void GearsystemCore::InitMemoryRules()
+void GeardriveCore::InitMemoryRules()
 {
 //    m_pCodemastersMemoryRule = new CodemastersMemoryRule(m_pMemory, m_pCartridge);
 //    m_pSegaMemoryRule = new SegaMemoryRule(m_pMemory, m_pCartridge);
 //    m_pRomOnlyMemoryRule = new RomOnlyMemoryRule(m_pMemory, m_pCartridge);
 }
 
-bool GearsystemCore::AddMemoryRules()
+bool GeardriveCore::AddMemoryRules()
 {
 //    Cartridge::CartridgeTypes type = m_pCartridge->GetType();
 //
@@ -373,7 +373,7 @@ bool GearsystemCore::AddMemoryRules()
     return true;
 }
 
-void GearsystemCore::Reset()
+void GeardriveCore::Reset()
 {
 //    m_pMemory->Reset();
 //    m_pProcessor->Reset();

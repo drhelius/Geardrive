@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef AUDIO_H
-#define	AUDIO_H
+#ifndef GD_AUDIO_H_
+#define	GD_AUDIO_H_
 
 #include "definitions.h"
 //#include "audio/Multi_Buffer.h"
@@ -53,4 +53,4 @@ private:
 
 const long kSampleBufferSize = 8192;
 
-#endif	/* AUDIO_H */
+#endif // GD_AUDIO_H_

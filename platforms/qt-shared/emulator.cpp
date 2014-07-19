@@ -31,7 +31,7 @@ Emulator::~Emulator()
 
 void Emulator::Init()
 {
-    gearsystem_core_ = new GearsystemCore();
+    gearsystem_core_ = new GeardriveCore();
     gearsystem_core_->Init();
 }
 

@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef ABOUT_H
-#define ABOUT_H
+#ifndef GD_ABOUT_H_
+#define GD_ABOUT_H_
 
 #include "ui_About.h"
 
@@ -34,4 +34,4 @@ private:
     Ui::About widget_;
 };
 
-#endif // ABOUT_H
+#endif // GD_ABOUT_H_

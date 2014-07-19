@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef VIDEOSETTINGS_H
-#define VIDEOSETTINGS_H
+#ifndef GD_VIDEOSETTINGS_H_
+#define GD_VIDEOSETTINGS_H_
 
 #include <QSettings>
 #include "ui_VideoSettings.h"
@@ -48,4 +48,4 @@ private:
     GLFrame* gl_frame_;
 };
 
-#endif // VIDEOSETTINGS_H
+#endif // GD_VIDEOSETTINGS_H_

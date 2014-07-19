@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef CORE_H
-#define	CORE_H
+#ifndef GD_GEARDRIVECORE_H_
+#define	GD_GEARDRIVECORE_H_
 
 #include "video.h"
 #include "input.h"
@@ -41,11 +41,11 @@ class Cartridge;
 //class SmsIOPorts;
 //class GameGearIOPorts;
 
-class GearsystemCore
+class GeardriveCore
 {
 public:
-    GearsystemCore();
-    ~GearsystemCore();
+    GeardriveCore();
+    ~GeardriveCore();
     void Init();
     void RunToVBlank(GD_Color* frame_buffer);
     bool LoadROM(const char* path);
@@ -84,5 +84,5 @@ private:
     bool paused_;
 };
 
-#endif	/* CORE_H */
+#endif // GD_GEARDRIVECORE_H_
 

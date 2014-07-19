@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef MYRENDERTHREAD_H
-#define MYRENDERTHREAD_H
+#ifndef GD_RENDERTHREAD_H_
+#define GD_RENDERTHREAD_H_
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -68,4 +68,4 @@ private:
     GLuint texture_;
 };
 
-#endif // MYRENDERTHREAD_H
+#endif // GD_RENDERTHREAD_H_

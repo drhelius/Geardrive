@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef SOUNDSETTINGS_H
-#define SOUNDSETTINGS_H
+#ifndef GD_SOUNDSETTINGS_H_
+#define GD_SOUNDSETTINGS_H_
 
 #include <QSettings>
 #include "ui_SoundSettings.h"
@@ -48,4 +48,4 @@ private:
     bool enabled_;
 };
 
-#endif // SOUNDSETTINGS_H
+#endif // GD_SOUNDSETTINGS_H_

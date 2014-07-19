@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef CARTRIDGE_H
-#define	CARTRIDGE_H
+#ifndef GD_CARTRIDGE_H_
+#define	GD_CARTRIDGE_H_
 
 #include "definitions.h"
 
@@ -84,4 +84,4 @@ private:
     bool m_bRAMWithoutBattery;
 };
 
-#endif	/* CARTRIDGE_H */
+#endif // GD_CARTRIDGE_H_

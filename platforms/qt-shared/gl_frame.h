@@ -17,8 +17,8 @@
  * 
  */
 
-#ifndef MYGLFRAME_H
-#define MYGLFRAME_H
+#ifndef GD_GLFRAME_H_
+#define GD_GLFRAME_H_
 
 #ifndef __APPLE__
     #include <GL/glew.h>
@@ -52,4 +52,4 @@ private:
     RenderThread render_thread_;
 };
 
-#endif // MYGLFRAME_H
+#endif // GD_GLFRAME_H_

@@ -4,7 +4,7 @@ Geardrive
 
 ----------
 
-Geardrive is a Sega Mega Drive / Genesis emulator written in C++ that runs on iOS, Raspberry Pi, Mac, Windows and Linux.
+Geardrive is a Sega Genesis / Mega Drive emulator written in C++ that runs on iOS, Raspberry Pi, Mac, Windows and Linux.
 
 The main focus of this emulator is readability of source code with very high compatibility.
 
@@ -75,7 +75,7 @@ Geardrive Z80 core passes all tests in Zexall, including undocumented instructio
 License
 -------
 
-<i>Geardrive - Sega Mega Drive / Genesis Emulator</i>
+<i>Geardrive - Sega Genesis / Mega Drive Emulator</i>
 
 <i>Copyright (C) 2014  Ignacio Sanchez</i>
 

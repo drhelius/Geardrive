@@ -2,6 +2,31 @@
 <configurationDescriptor version="94">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="f1" displayName="Core" projectFiles="true">
+      <logicalFolder name="f1" displayName="GM68k" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="z80" displayName="GZ80" projectFiles="true">
+        <itemPath>../../../src/GZ80/gz80_core.cpp</itemPath>
+        <itemPath>../../../src/GZ80/gz80_core.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_core_inl.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_definitions.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_eight_bit_register.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_ioports_interface.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_memory_interface.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_cb_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_daa.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_dd_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_ddcb_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_ed_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_fd_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_fdcb_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_timing.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcode_xx_names.h</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcodes.cpp</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcodes_cb.cpp</itemPath>
+        <itemPath>../../../src/GZ80/gz80_opcodes_ed.cpp</itemPath>
+        <itemPath>../../../src/GZ80/gz80_sixteen_bit_register.h</itemPath>
+      </logicalFolder>
       <itemPath>../../../src/audio.cpp</itemPath>
       <itemPath>../../../src/audio.h</itemPath>
       <itemPath>../../../src/cartridge.cpp</itemPath>
@@ -61,6 +86,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../../../src/z80</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="4">
@@ -87,6 +115,99 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="../../../src/GZ80/gz80_core.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_core.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_core_inl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_definitions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_eight_bit_register.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_ioports_interface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_memory_interface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_cb_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_daa.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_dd_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_ddcb_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_ed_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_fd_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_fdcb_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_timing.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_xx_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcodes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcodes_cb.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcodes_ed.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_sixteen_bit_register.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../../src/audio.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../../src/audio.h" ex="false" tool="3" flavor2="0">
@@ -191,6 +312,99 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="../../../src/GZ80/gz80_core.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_core.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_core_inl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_definitions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_eight_bit_register.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_ioports_interface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_memory_interface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_cb_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_daa.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_dd_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_ddcb_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_ed_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_fd_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_fdcb_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_timing.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcode_xx_names.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcodes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcodes_cb.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_opcodes_ed.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../../src/GZ80/gz80_sixteen_bit_register.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../../src/audio.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../../src/audio.h" ex="false" tool="3" flavor2="0">

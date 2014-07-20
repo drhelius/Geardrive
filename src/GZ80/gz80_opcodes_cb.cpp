@@ -1,6 +1,6 @@
 /*
- * Gearsystem - Sega Master System / Game Gear Emulator
- * Copyright (C) 2013  Ignacio Sanchez
+ * GZ80 - Zilog Z80 Emulator
+ * Copyright (C) 2014  Ignacio Sanchez Gines
 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,1540 +17,1545 @@
  * 
  */
 
-#include "Processor.h"
+#include "gz80_core.h"
 
-void Processor::OPCodeCB0x00()
+namespace gz80
+{
+   
+void GZ80::OPCodeCB0x00()
 {
     // RLC B
     OPCodes_RLC(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x01()
+void GZ80::OPCodeCB0x01()
 {
     // RLC C
     OPCodes_RLC(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x02()
+void GZ80::OPCodeCB0x02()
 {
     // RLC D
     OPCodes_RLC(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x03()
+void GZ80::OPCodeCB0x03()
 {
     // RLC E
     OPCodes_RLC(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x04()
+void GZ80::OPCodeCB0x04()
 {
     // RLC H
     OPCodes_RLC(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x05()
+void GZ80::OPCodeCB0x05()
 {
     // RLC L
     OPCodes_RLC(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x06()
+void GZ80::OPCodeCB0x06()
 {
     // RLC (HL)
     OPCodes_RLC_HL();
 }
 
-void Processor::OPCodeCB0x07()
+void GZ80::OPCodeCB0x07()
 {
     // RLC A
     OPCodes_RLC(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x08()
+void GZ80::OPCodeCB0x08()
 {
     // RRC B
     OPCodes_RRC(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x09()
+void GZ80::OPCodeCB0x09()
 {
     // RRC C
     OPCodes_RRC(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x0A()
+void GZ80::OPCodeCB0x0A()
 {
     // RRC D
     OPCodes_RRC(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x0B()
+void GZ80::OPCodeCB0x0B()
 {
     // RRC E
     OPCodes_RRC(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x0C()
+void GZ80::OPCodeCB0x0C()
 {
     // RRC H
     OPCodes_RRC(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x0D()
+void GZ80::OPCodeCB0x0D()
 {
     // RRC L
     OPCodes_RRC(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x0E()
+void GZ80::OPCodeCB0x0E()
 {
     // RRC (HL)
     OPCodes_RRC_HL();
 }
 
-void Processor::OPCodeCB0x0F()
+void GZ80::OPCodeCB0x0F()
 {
     // RRC A
     OPCodes_RRC(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x10()
+void GZ80::OPCodeCB0x10()
 {
     // RL B
     OPCodes_RL(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x11()
+void GZ80::OPCodeCB0x11()
 {
     // RL C
     OPCodes_RL(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x12()
+void GZ80::OPCodeCB0x12()
 {
     // RL D
     OPCodes_RL(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x13()
+void GZ80::OPCodeCB0x13()
 {
     // RL E
     OPCodes_RL(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x14()
+void GZ80::OPCodeCB0x14()
 {
     // RL H
     OPCodes_RL(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x15()
+void GZ80::OPCodeCB0x15()
 {
     // RL L
     OPCodes_RL(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x16()
+void GZ80::OPCodeCB0x16()
 {
     // RL (HL)
     OPCodes_RL_HL();
 }
 
-void Processor::OPCodeCB0x17()
+void GZ80::OPCodeCB0x17()
 {
     // RL A
     OPCodes_RL(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x18()
+void GZ80::OPCodeCB0x18()
 {
     // RR B
     OPCodes_RR(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x19()
+void GZ80::OPCodeCB0x19()
 {
     // RR C
     OPCodes_RR(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x1A()
+void GZ80::OPCodeCB0x1A()
 {
     // RR D
     OPCodes_RR(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x1B()
+void GZ80::OPCodeCB0x1B()
 {
     // RR E
     OPCodes_RR(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x1C()
+void GZ80::OPCodeCB0x1C()
 {
     // RR H
     OPCodes_RR(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x1D()
+void GZ80::OPCodeCB0x1D()
 {
     // RR L
     OPCodes_RR(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x1E()
+void GZ80::OPCodeCB0x1E()
 {
     // RR (HL)
     OPCodes_RR_HL();
 }
 
-void Processor::OPCodeCB0x1F()
+void GZ80::OPCodeCB0x1F()
 {
     // RR A
     OPCodes_RR(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x20()
+void GZ80::OPCodeCB0x20()
 {
     // SLA B
     OPCodes_SLA(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x21()
+void GZ80::OPCodeCB0x21()
 {
     // SLA C
     OPCodes_SLA(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x22()
+void GZ80::OPCodeCB0x22()
 {
     // SLA D
     OPCodes_SLA(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x23()
+void GZ80::OPCodeCB0x23()
 {
     // SLA E
     OPCodes_SLA(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x24()
+void GZ80::OPCodeCB0x24()
 {
     // SLA H
     OPCodes_SLA(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x25()
+void GZ80::OPCodeCB0x25()
 {
     // SLA L
     OPCodes_SLA(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x26()
+void GZ80::OPCodeCB0x26()
 {
     // SLA (HL)
     OPCodes_SLA_HL();
 }
 
-void Processor::OPCodeCB0x27()
+void GZ80::OPCodeCB0x27()
 {
     // SLA A
     OPCodes_SLA(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x28()
+void GZ80::OPCodeCB0x28()
 {
     // SRA B
     OPCodes_SRA(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x29()
+void GZ80::OPCodeCB0x29()
 {
     // SRA C
     OPCodes_SRA(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x2A()
+void GZ80::OPCodeCB0x2A()
 {
     // SRA D
     OPCodes_SRA(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x2B()
+void GZ80::OPCodeCB0x2B()
 {
     // SRA E
     OPCodes_SRA(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x2C()
+void GZ80::OPCodeCB0x2C()
 {
     // SRA H
     OPCodes_SRA(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x2D()
+void GZ80::OPCodeCB0x2D()
 {
     // SRA L
     OPCodes_SRA(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x2E()
+void GZ80::OPCodeCB0x2E()
 {
     // SRA (HL)
     OPCodes_SRA_HL();
 }
 
-void Processor::OPCodeCB0x2F()
+void GZ80::OPCodeCB0x2F()
 {
     // SRA A
     OPCodes_SRA(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x30()
+void GZ80::OPCodeCB0x30()
 {
     // SLL B
     OPCodes_SLL(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x31()
+void GZ80::OPCodeCB0x31()
 {
     // SLL C
     OPCodes_SLL(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x32()
+void GZ80::OPCodeCB0x32()
 {
     // SLL D
     OPCodes_SLL(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x33()
+void GZ80::OPCodeCB0x33()
 {
     // SLL E
     OPCodes_SLL(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x34()
+void GZ80::OPCodeCB0x34()
 {
     // SLL H
     OPCodes_SLL(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x35()
+void GZ80::OPCodeCB0x35()
 {
     // SLL L
     OPCodes_SLL(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x36()
+void GZ80::OPCodeCB0x36()
 {
     // SLL (HL)
     OPCodes_SLL_HL();
 }
 
-void Processor::OPCodeCB0x37()
+void GZ80::OPCodeCB0x37()
 {
     // SLL A
     OPCodes_SLL(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x38()
+void GZ80::OPCodeCB0x38()
 {
     // SRL B
     OPCodes_SRL(BC.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x39()
+void GZ80::OPCodeCB0x39()
 {
     // SRL C
     OPCodes_SRL(BC.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x3A()
+void GZ80::OPCodeCB0x3A()
 {
     // SRL D
     OPCodes_SRL(DE.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x3B()
+void GZ80::OPCodeCB0x3B()
 {
     // SRL E
     OPCodes_SRL(DE.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x3C()
+void GZ80::OPCodeCB0x3C()
 {
     // SRL H
     OPCodes_SRL(HL.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x3D()
+void GZ80::OPCodeCB0x3D()
 {
     // SRL L
     OPCodes_SRL(HL.GetLowRegister());
 }
 
-void Processor::OPCodeCB0x3E()
+void GZ80::OPCodeCB0x3E()
 {
     // SRL (HL)
     OPCodes_SRL_HL();
 }
 
-void Processor::OPCodeCB0x3F()
+void GZ80::OPCodeCB0x3F()
 {
     // SRL A
     OPCodes_SRL(AF.GetHighRegister());
 }
 
-void Processor::OPCodeCB0x40()
+void GZ80::OPCodeCB0x40()
 {
     // BIT 0 B
     OPCodes_BIT(BC.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x41()
+void GZ80::OPCodeCB0x41()
 {
     // BIT 0 C
     OPCodes_BIT(BC.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0x42()
+void GZ80::OPCodeCB0x42()
 {
     // BIT 0 D
     OPCodes_BIT(DE.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x43()
+void GZ80::OPCodeCB0x43()
 {
     // BIT 0 E
     OPCodes_BIT(DE.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0x44()
+void GZ80::OPCodeCB0x44()
 {
     // BIT 0 H
     OPCodes_BIT(HL.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x45()
+void GZ80::OPCodeCB0x45()
 {
     // BIT 0 L
     OPCodes_BIT(HL.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0x46()
+void GZ80::OPCodeCB0x46()
 {
     // BIT 0 (HL)
     OPCodes_BIT_HL(0);
 }
 
-void Processor::OPCodeCB0x47()
+void GZ80::OPCodeCB0x47()
 {
     // BIT 0 A
     OPCodes_BIT(AF.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x48()
+void GZ80::OPCodeCB0x48()
 {
     // BIT 1 B
     OPCodes_BIT(BC.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x49()
+void GZ80::OPCodeCB0x49()
 {
     // BIT 1 C
     OPCodes_BIT(BC.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0x4A()
+void GZ80::OPCodeCB0x4A()
 {
     // BIT 1 D
     OPCodes_BIT(DE.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x4B()
+void GZ80::OPCodeCB0x4B()
 {
     // BIT 1 E
     OPCodes_BIT(DE.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0x4C()
+void GZ80::OPCodeCB0x4C()
 {
     // BIT 1 H
     OPCodes_BIT(HL.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x4D()
+void GZ80::OPCodeCB0x4D()
 {
     // BIT 1 L
     OPCodes_BIT(HL.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0x4E()
+void GZ80::OPCodeCB0x4E()
 {
     // BIT 1 (HL)
     OPCodes_BIT_HL(1);
 }
 
-void Processor::OPCodeCB0x4F()
+void GZ80::OPCodeCB0x4F()
 {
     // BIT 1 A
     OPCodes_BIT(AF.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x50()
+void GZ80::OPCodeCB0x50()
 {
     // BIT 2 B
     OPCodes_BIT(BC.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x51()
+void GZ80::OPCodeCB0x51()
 {
     // BIT 2 C
     OPCodes_BIT(BC.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0x52()
+void GZ80::OPCodeCB0x52()
 {
     // BIT 2 D
     OPCodes_BIT(DE.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x53()
+void GZ80::OPCodeCB0x53()
 {
     // BIT 2 E
     OPCodes_BIT(DE.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0x54()
+void GZ80::OPCodeCB0x54()
 {
     // BIT 2 H
     OPCodes_BIT(HL.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x55()
+void GZ80::OPCodeCB0x55()
 {
     // BIT 2 L
     OPCodes_BIT(HL.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0x56()
+void GZ80::OPCodeCB0x56()
 {
     // BIT 2 (HL)
     OPCodes_BIT_HL(2);
 }
 
-void Processor::OPCodeCB0x57()
+void GZ80::OPCodeCB0x57()
 {
     // BIT 2 A
     OPCodes_BIT(AF.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x58()
+void GZ80::OPCodeCB0x58()
 {
     // BIT 3 B
     OPCodes_BIT(BC.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0x59()
+void GZ80::OPCodeCB0x59()
 {
     // BIT 3 C
     OPCodes_BIT(BC.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0x5A()
+void GZ80::OPCodeCB0x5A()
 {
     // BIT 3 D
     OPCodes_BIT(DE.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0x5B()
+void GZ80::OPCodeCB0x5B()
 {
     // BIT 3 E
     OPCodes_BIT(DE.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0x5C()
+void GZ80::OPCodeCB0x5C()
 {
     // BIT 3 H
     OPCodes_BIT(HL.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0x5D()
+void GZ80::OPCodeCB0x5D()
 {
     // BIT 3 L
     OPCodes_BIT(HL.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0x5E()
+void GZ80::OPCodeCB0x5E()
 {
     // BIT 3 (HL)
     OPCodes_BIT_HL(3);
 }
 
-void Processor::OPCodeCB0x5F()
+void GZ80::OPCodeCB0x5F()
 {
     // BIT 3 A
     OPCodes_BIT(AF.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0x60()
+void GZ80::OPCodeCB0x60()
 {
     // BIT 4 B
     OPCodes_BIT(BC.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0x61()
+void GZ80::OPCodeCB0x61()
 {
     // BIT 4 C
     OPCodes_BIT(BC.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0x62()
+void GZ80::OPCodeCB0x62()
 {
     // BIT 4 D
     OPCodes_BIT(DE.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0x63()
+void GZ80::OPCodeCB0x63()
 {
     // BIT 4 E
     OPCodes_BIT(DE.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0x64()
+void GZ80::OPCodeCB0x64()
 {
     // BIT 4 H
     OPCodes_BIT(HL.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0x65()
+void GZ80::OPCodeCB0x65()
 {
     // BIT 4 L
     OPCodes_BIT(HL.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0x66()
+void GZ80::OPCodeCB0x66()
 {
     // BIT 4 (HL)
     OPCodes_BIT_HL(4);
 }
 
-void Processor::OPCodeCB0x67()
+void GZ80::OPCodeCB0x67()
 {
     // BIT 4 A
     OPCodes_BIT(AF.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0x68()
+void GZ80::OPCodeCB0x68()
 {
     // BIT 5 B
     OPCodes_BIT(BC.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0x69()
+void GZ80::OPCodeCB0x69()
 {
     // BIT 5 C
     OPCodes_BIT(BC.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0x6A()
+void GZ80::OPCodeCB0x6A()
 {
     // BIT 5 D
     OPCodes_BIT(DE.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0x6B()
+void GZ80::OPCodeCB0x6B()
 {
     // BIT 5 E
     OPCodes_BIT(DE.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0x6C()
+void GZ80::OPCodeCB0x6C()
 {
     // BIT 5 H
     OPCodes_BIT(HL.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0x6D()
+void GZ80::OPCodeCB0x6D()
 {
     // BIT 5 L
     OPCodes_BIT(HL.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0x6E()
+void GZ80::OPCodeCB0x6E()
 {
     // BIT 5 (HL)
     OPCodes_BIT_HL(5);
 }
 
-void Processor::OPCodeCB0x6F()
+void GZ80::OPCodeCB0x6F()
 {
     // BIT 5 A
     OPCodes_BIT(AF.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0x70()
+void GZ80::OPCodeCB0x70()
 {
     // BIT 6 B
     OPCodes_BIT(BC.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0x71()
+void GZ80::OPCodeCB0x71()
 {
     // BIT 6 C
     OPCodes_BIT(BC.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0x72()
+void GZ80::OPCodeCB0x72()
 {
     // BIT 6 D
     OPCodes_BIT(DE.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0x73()
+void GZ80::OPCodeCB0x73()
 {
     // BIT 6 E
     OPCodes_BIT(DE.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0x74()
+void GZ80::OPCodeCB0x74()
 {
     // BIT 6 H
     OPCodes_BIT(HL.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0x75()
+void GZ80::OPCodeCB0x75()
 {
     // BIT 6 L
     OPCodes_BIT(HL.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0x76()
+void GZ80::OPCodeCB0x76()
 {
     // BIT 6 (HL)
     OPCodes_BIT_HL(6);
 }
 
-void Processor::OPCodeCB0x77()
+void GZ80::OPCodeCB0x77()
 {
     // BIT 6 A
     OPCodes_BIT(AF.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0x78()
+void GZ80::OPCodeCB0x78()
 {
     // BIT 7 B
     OPCodes_BIT(BC.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0x79()
+void GZ80::OPCodeCB0x79()
 {
     // BIT 7 C
     OPCodes_BIT(BC.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0x7A()
+void GZ80::OPCodeCB0x7A()
 {
     // BIT 7 D
     OPCodes_BIT(DE.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0x7B()
+void GZ80::OPCodeCB0x7B()
 {
     // BIT 7 E
     OPCodes_BIT(DE.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0x7C()
+void GZ80::OPCodeCB0x7C()
 {
     // BIT 7 H
     OPCodes_BIT(HL.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0x7D()
+void GZ80::OPCodeCB0x7D()
 {
     // BIT 7 L
     OPCodes_BIT(HL.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0x7E()
+void GZ80::OPCodeCB0x7E()
 {
     // BIT 7 (HL)
     OPCodes_BIT_HL(7);
 }
 
-void Processor::OPCodeCB0x7F()
+void GZ80::OPCodeCB0x7F()
 {
     // BIT 7 A
     OPCodes_BIT(AF.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0x80()
+void GZ80::OPCodeCB0x80()
 {
     // RES 0 B
     OPCodes_RES(BC.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x81()
+void GZ80::OPCodeCB0x81()
 {
     // RES 0 C
     OPCodes_RES(BC.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0x82()
+void GZ80::OPCodeCB0x82()
 {
     // RES 0 D
     OPCodes_RES(DE.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x83()
+void GZ80::OPCodeCB0x83()
 {
     // RES 0 E
     OPCodes_RES(DE.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0x84()
+void GZ80::OPCodeCB0x84()
 {
     // RES 0 H
     OPCodes_RES(HL.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x85()
+void GZ80::OPCodeCB0x85()
 {
     // RES 0 L
     OPCodes_RES(HL.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0x86()
+void GZ80::OPCodeCB0x86()
 {
     // RES 0 (HL)
     OPCodes_RES_HL(0);
 }
 
-void Processor::OPCodeCB0x87()
+void GZ80::OPCodeCB0x87()
 {
     // RES 0 A
     OPCodes_RES(AF.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0x88()
+void GZ80::OPCodeCB0x88()
 {
     // RES 1 B
     OPCodes_RES(BC.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x89()
+void GZ80::OPCodeCB0x89()
 {
     // RES 1 C
     OPCodes_RES(BC.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0x8A()
+void GZ80::OPCodeCB0x8A()
 {
     // RES 1 D
     OPCodes_RES(DE.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x8B()
+void GZ80::OPCodeCB0x8B()
 {
     // RES 1 E
     OPCodes_RES(DE.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0x8C()
+void GZ80::OPCodeCB0x8C()
 {
     // RES 1 H
     OPCodes_RES(HL.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x8D()
+void GZ80::OPCodeCB0x8D()
 {
     // RES 1 L
     OPCodes_RES(HL.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0x8E()
+void GZ80::OPCodeCB0x8E()
 {
     // RES 1 (HL)
     OPCodes_RES_HL(1);
 }
 
-void Processor::OPCodeCB0x8F()
+void GZ80::OPCodeCB0x8F()
 {
     // RES 1 A
     OPCodes_RES(AF.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0x90()
+void GZ80::OPCodeCB0x90()
 {
     // RES 2 B
     OPCodes_RES(BC.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x91()
+void GZ80::OPCodeCB0x91()
 {
     // RES 2 C
     OPCodes_RES(BC.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0x92()
+void GZ80::OPCodeCB0x92()
 {
     // RES 2 D
     OPCodes_RES(DE.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x93()
+void GZ80::OPCodeCB0x93()
 {
     // RES 2 E
     OPCodes_RES(DE.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0x94()
+void GZ80::OPCodeCB0x94()
 {
     // RES 2 H
     OPCodes_RES(HL.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x95()
+void GZ80::OPCodeCB0x95()
 {
     // RES 2 L
     OPCodes_RES(HL.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0x96()
+void GZ80::OPCodeCB0x96()
 {
     // RES 2 (HL)
     OPCodes_RES_HL(2);
 }
 
-void Processor::OPCodeCB0x97()
+void GZ80::OPCodeCB0x97()
 {
     // RES 2 A
     OPCodes_RES(AF.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0x98()
+void GZ80::OPCodeCB0x98()
 {
     // RES 3 B
     OPCodes_RES(BC.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0x99()
+void GZ80::OPCodeCB0x99()
 {
     // RES 3 C
     OPCodes_RES(BC.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0x9A()
+void GZ80::OPCodeCB0x9A()
 {
     // RES 3 D
     OPCodes_RES(DE.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0x9B()
+void GZ80::OPCodeCB0x9B()
 {
     // RES 3 E
     OPCodes_RES(DE.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0x9C()
+void GZ80::OPCodeCB0x9C()
 {
     // RES 3 H
     OPCodes_RES(HL.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0x9D()
+void GZ80::OPCodeCB0x9D()
 {
     // RES 3 L
     OPCodes_RES(HL.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0x9E()
+void GZ80::OPCodeCB0x9E()
 {
     // RES 3 (HL)
     OPCodes_RES_HL(3);
 }
 
-void Processor::OPCodeCB0x9F()
+void GZ80::OPCodeCB0x9F()
 {
     // RES 3 A
     OPCodes_RES(AF.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0xA0()
+void GZ80::OPCodeCB0xA0()
 {
     // RES 4 B
     OPCodes_RES(BC.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xA1()
+void GZ80::OPCodeCB0xA1()
 {
     // RES 4 C
     OPCodes_RES(BC.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0xA2()
+void GZ80::OPCodeCB0xA2()
 {
     // RES 4 D
     OPCodes_RES(DE.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xA3()
+void GZ80::OPCodeCB0xA3()
 {
     // RES 4 E
     OPCodes_RES(DE.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0xA4()
+void GZ80::OPCodeCB0xA4()
 {
     // RES 4 H
     OPCodes_RES(HL.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xA5()
+void GZ80::OPCodeCB0xA5()
 {
     // RES 4 L
     OPCodes_RES(HL.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0xA6()
+void GZ80::OPCodeCB0xA6()
 {
     // RES 4 (HL)
     OPCodes_RES_HL(4);
 }
 
-void Processor::OPCodeCB0xA7()
+void GZ80::OPCodeCB0xA7()
 {
     // RES 4 A
     OPCodes_RES(AF.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xA8()
+void GZ80::OPCodeCB0xA8()
 {
     // RES 5 B
     OPCodes_RES(BC.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xA9()
+void GZ80::OPCodeCB0xA9()
 {
     // RES 5 C
     OPCodes_RES(BC.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0xAA()
+void GZ80::OPCodeCB0xAA()
 {
     // RES 5 D
     OPCodes_RES(DE.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xAB()
+void GZ80::OPCodeCB0xAB()
 {
     // RES 5 E
     OPCodes_RES(DE.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0xAC()
+void GZ80::OPCodeCB0xAC()
 {
     // RES 5 H
     OPCodes_RES(HL.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xAD()
+void GZ80::OPCodeCB0xAD()
 {
     // RES 5 L
     OPCodes_RES(HL.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0xAE()
+void GZ80::OPCodeCB0xAE()
 {
     // RES 5 (HL)
     OPCodes_RES_HL(5);
 }
 
-void Processor::OPCodeCB0xAF()
+void GZ80::OPCodeCB0xAF()
 {
     // RES 5 A
     OPCodes_RES(AF.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xB0()
+void GZ80::OPCodeCB0xB0()
 {
     // RES 6 B
     OPCodes_RES(BC.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xB1()
+void GZ80::OPCodeCB0xB1()
 {
     // RES 6 C
     OPCodes_RES(BC.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0xB2()
+void GZ80::OPCodeCB0xB2()
 {
     // RES 6 D
     OPCodes_RES(DE.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xB3()
+void GZ80::OPCodeCB0xB3()
 {
     // RES 6 E
     OPCodes_RES(DE.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0xB4()
+void GZ80::OPCodeCB0xB4()
 {
     // RES 6 H
     OPCodes_RES(HL.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xB5()
+void GZ80::OPCodeCB0xB5()
 {
     // RES 6 L
     OPCodes_RES(HL.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0xB6()
+void GZ80::OPCodeCB0xB6()
 {
     // RES 6 (HL)
     OPCodes_RES_HL(6);
 }
 
-void Processor::OPCodeCB0xB7()
+void GZ80::OPCodeCB0xB7()
 {
     // RES 6 A
     OPCodes_RES(AF.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xB8()
+void GZ80::OPCodeCB0xB8()
 {
     // RES 7 B
     OPCodes_RES(BC.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0xB9()
+void GZ80::OPCodeCB0xB9()
 {
     // RES 7 C
     OPCodes_RES(BC.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0xBA()
+void GZ80::OPCodeCB0xBA()
 {
     // RES 7 D
     OPCodes_RES(DE.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0xBB()
+void GZ80::OPCodeCB0xBB()
 {
     // RES 7 E
     OPCodes_RES(DE.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0xBC()
+void GZ80::OPCodeCB0xBC()
 {
     // RES 7 H
     OPCodes_RES(HL.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0xBD()
+void GZ80::OPCodeCB0xBD()
 {
     // RES 7 L
     OPCodes_RES(HL.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0xBE()
+void GZ80::OPCodeCB0xBE()
 {
     // RES 7 (HL)
     OPCodes_RES_HL(7);
 }
 
-void Processor::OPCodeCB0xBF()
+void GZ80::OPCodeCB0xBF()
 {
     // RES 7 A
     OPCodes_RES(AF.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0xC0()
+void GZ80::OPCodeCB0xC0()
 {
     // SET 0 B
     OPCodes_SET(BC.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0xC1()
+void GZ80::OPCodeCB0xC1()
 {
     // SET 0 C
     OPCodes_SET(BC.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0xC2()
+void GZ80::OPCodeCB0xC2()
 {
     // SET 0 D
     OPCodes_SET(DE.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0xC3()
+void GZ80::OPCodeCB0xC3()
 {
     // SET 0 E
     OPCodes_SET(DE.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0xC4()
+void GZ80::OPCodeCB0xC4()
 {
     // SET 0 H
     OPCodes_SET(HL.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0xC5()
+void GZ80::OPCodeCB0xC5()
 {
     // SET 0 L
     OPCodes_SET(HL.GetLowRegister(), 0);
 }
 
-void Processor::OPCodeCB0xC6()
+void GZ80::OPCodeCB0xC6()
 {
     // SET 0 (HL)
     OPCodes_SET_HL(0);
 }
 
-void Processor::OPCodeCB0xC7()
+void GZ80::OPCodeCB0xC7()
 {
     // SET 0 A
     OPCodes_SET(AF.GetHighRegister(), 0);
 }
 
-void Processor::OPCodeCB0xC8()
+void GZ80::OPCodeCB0xC8()
 {
     // SET 1 B
     OPCodes_SET(BC.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0xC9()
+void GZ80::OPCodeCB0xC9()
 {
     // SET 1 C
     OPCodes_SET(BC.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0xCA()
+void GZ80::OPCodeCB0xCA()
 {
     // SET 1 D
     OPCodes_SET(DE.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0xCB()
+void GZ80::OPCodeCB0xCB()
 {
     // SET 1 E
     OPCodes_SET(DE.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0xCC()
+void GZ80::OPCodeCB0xCC()
 {
     // SET 1 H
     OPCodes_SET(HL.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0xCD()
+void GZ80::OPCodeCB0xCD()
 {
     // SET 1 L
     OPCodes_SET(HL.GetLowRegister(), 1);
 }
 
-void Processor::OPCodeCB0xCE()
+void GZ80::OPCodeCB0xCE()
 {
     // SET 1 (HL)
     OPCodes_SET_HL(1);
 }
 
-void Processor::OPCodeCB0xCF()
+void GZ80::OPCodeCB0xCF()
 {
     // SET 1 A
     OPCodes_SET(AF.GetHighRegister(), 1);
 }
 
-void Processor::OPCodeCB0xD0()
+void GZ80::OPCodeCB0xD0()
 {
     // SET 2 B
     OPCodes_SET(BC.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0xD1()
+void GZ80::OPCodeCB0xD1()
 {
     // SET 2 C
     OPCodes_SET(BC.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0xD2()
+void GZ80::OPCodeCB0xD2()
 {
     // SET 2 D
     OPCodes_SET(DE.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0xD3()
+void GZ80::OPCodeCB0xD3()
 {
     // SET 2 E
     OPCodes_SET(DE.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0xD4()
+void GZ80::OPCodeCB0xD4()
 {
     // SET 2 H
     OPCodes_SET(HL.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0xD5()
+void GZ80::OPCodeCB0xD5()
 {
     // SET 2 L
     OPCodes_SET(HL.GetLowRegister(), 2);
 }
 
-void Processor::OPCodeCB0xD6()
+void GZ80::OPCodeCB0xD6()
 {
     // SET 2 (HL)
     OPCodes_SET_HL(2);
 }
 
-void Processor::OPCodeCB0xD7()
+void GZ80::OPCodeCB0xD7()
 {
     // SET 2 A
     OPCodes_SET(AF.GetHighRegister(), 2);
 }
 
-void Processor::OPCodeCB0xD8()
+void GZ80::OPCodeCB0xD8()
 {
     // SET 3 B
     OPCodes_SET(BC.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0xD9()
+void GZ80::OPCodeCB0xD9()
 {
     // SET 3 C
     OPCodes_SET(BC.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0xDA()
+void GZ80::OPCodeCB0xDA()
 {
     // SET 3 D
     OPCodes_SET(DE.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0xDB()
+void GZ80::OPCodeCB0xDB()
 {
     // SET 3 E
     OPCodes_SET(DE.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0xDC()
+void GZ80::OPCodeCB0xDC()
 {
     // SET 3 H
     OPCodes_SET(HL.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0xDD()
+void GZ80::OPCodeCB0xDD()
 {
     // SET 3 L
     OPCodes_SET(HL.GetLowRegister(), 3);
 }
 
-void Processor::OPCodeCB0xDE()
+void GZ80::OPCodeCB0xDE()
 {
     // SET 3 (HL)
     OPCodes_SET_HL(3);
 }
 
-void Processor::OPCodeCB0xDF()
+void GZ80::OPCodeCB0xDF()
 {
     // SET 3 A
     OPCodes_SET(AF.GetHighRegister(), 3);
 }
 
-void Processor::OPCodeCB0xE0()
+void GZ80::OPCodeCB0xE0()
 {
     // SET 4 B
     OPCodes_SET(BC.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xE1()
+void GZ80::OPCodeCB0xE1()
 {
     // SET 4 C
     OPCodes_SET(BC.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0xE2()
+void GZ80::OPCodeCB0xE2()
 {
     // SET 4 D
     OPCodes_SET(DE.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xE3()
+void GZ80::OPCodeCB0xE3()
 {
     // SET 4 E
     OPCodes_SET(DE.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0xE4()
+void GZ80::OPCodeCB0xE4()
 {
     // SET 4 H
     OPCodes_SET(HL.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xE5()
+void GZ80::OPCodeCB0xE5()
 {
     // SET 4 L
     OPCodes_SET(HL.GetLowRegister(), 4);
 }
 
-void Processor::OPCodeCB0xE6()
+void GZ80::OPCodeCB0xE6()
 {
     // SET 4 (HL)
     OPCodes_SET_HL(4);
 }
 
-void Processor::OPCodeCB0xE7()
+void GZ80::OPCodeCB0xE7()
 {
     // SET 4 A
     OPCodes_SET(AF.GetHighRegister(), 4);
 }
 
-void Processor::OPCodeCB0xE8()
+void GZ80::OPCodeCB0xE8()
 {
     // SET 5 B
     OPCodes_SET(BC.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xE9()
+void GZ80::OPCodeCB0xE9()
 {
     // SET 5 C
     OPCodes_SET(BC.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0xEA()
+void GZ80::OPCodeCB0xEA()
 {
     // SET 5 D
     OPCodes_SET(DE.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xEB()
+void GZ80::OPCodeCB0xEB()
 {
     // SET 5 E
     OPCodes_SET(DE.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0xEC()
+void GZ80::OPCodeCB0xEC()
 {
     // SET 5 H
     OPCodes_SET(HL.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xED()
+void GZ80::OPCodeCB0xED()
 {
     // SET 5 L
     OPCodes_SET(HL.GetLowRegister(), 5);
 }
 
-void Processor::OPCodeCB0xEE()
+void GZ80::OPCodeCB0xEE()
 {
     // SET 5 (HL)
     OPCodes_SET_HL(5);
 }
 
-void Processor::OPCodeCB0xEF()
+void GZ80::OPCodeCB0xEF()
 {
     // SET 5 A
     OPCodes_SET(AF.GetHighRegister(), 5);
 }
 
-void Processor::OPCodeCB0xF0()
+void GZ80::OPCodeCB0xF0()
 {
     // SET 6 B
     OPCodes_SET(BC.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xF1()
+void GZ80::OPCodeCB0xF1()
 {
     // SET 6 C
     OPCodes_SET(BC.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0xF2()
+void GZ80::OPCodeCB0xF2()
 {
     // SET 6 D
     OPCodes_SET(DE.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xF3()
+void GZ80::OPCodeCB0xF3()
 {
     // SET 6 E
     OPCodes_SET(DE.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0xF4()
+void GZ80::OPCodeCB0xF4()
 {
     // SET 6 H
     OPCodes_SET(HL.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xF5()
+void GZ80::OPCodeCB0xF5()
 {
     // SET 6 L
     OPCodes_SET(HL.GetLowRegister(), 6);
 }
 
-void Processor::OPCodeCB0xF6()
+void GZ80::OPCodeCB0xF6()
 {
     // SET 6 (HL)
     OPCodes_SET_HL(6);
 }
 
-void Processor::OPCodeCB0xF7()
+void GZ80::OPCodeCB0xF7()
 {
     // SET 6 A
     OPCodes_SET(AF.GetHighRegister(), 6);
 }
 
-void Processor::OPCodeCB0xF8()
+void GZ80::OPCodeCB0xF8()
 {
     // SET 7 B
     OPCodes_SET(BC.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0xF9()
+void GZ80::OPCodeCB0xF9()
 {
     // SET 7 C
     OPCodes_SET(BC.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0xFA()
+void GZ80::OPCodeCB0xFA()
 {
     // SET 7 D
     OPCodes_SET(DE.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0xFB()
+void GZ80::OPCodeCB0xFB()
 {
     // SET 7 E
     OPCodes_SET(DE.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0xFC()
+void GZ80::OPCodeCB0xFC()
 {
     // SET 7 H
     OPCodes_SET(HL.GetHighRegister(), 7);
 }
 
-void Processor::OPCodeCB0xFD()
+void GZ80::OPCodeCB0xFD()
 {
     // SET 7 L
     OPCodes_SET(HL.GetLowRegister(), 7);
 }
 
-void Processor::OPCodeCB0xFE()
+void GZ80::OPCodeCB0xFE()
 {
     // SET 7 (HL)
     OPCodes_SET_HL(7);
 }
 
-void Processor::OPCodeCB0xFF()
+void GZ80::OPCodeCB0xFF()
 {
     // SET 7 A
     OPCodes_SET(AF.GetHighRegister(), 7);
 }
+
+} // namespace gz80

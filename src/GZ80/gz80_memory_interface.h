@@ -6,11 +6,11 @@
 namespace gz80
 {
     
-class MemoryIterface
+class MemoryInterface
 {
 public:
-    MemoryIterface() {};
-    virtual ~MemoryIterface();
+    MemoryInterface() {};
+    virtual ~MemoryInterface();
     virtual u8 Read(u16 address) = 0;
     virtual void Write(u16 address, u8 value) = 0;
     virtual void Disassemble(u16 address, const char* disassembled_string) = 0;

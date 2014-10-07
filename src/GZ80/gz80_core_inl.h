@@ -31,17 +31,17 @@ namespace gz80
    
 inline u8 GZ80::FetchOPCode()
 {
-    u8 opcode = memory_impl_->Read(PC.GetValue());
-    PC.Increment();
+    u8 opcode = memory_impl_->Read(PC_.GetValue());
+    PC_.Increment();
     return opcode;
 }
 
 inline u16 GZ80::FetchArg16()
 {
-    u16 pc = PC.GetValue();
+    u16 pc = PC_.GetValue();
     u8 l = memory_impl_->Read(pc);
     u8 h = memory_impl_->Read(pc + 1);
-    PC.SetValue(pc + 2);
+    PC_.SetValue(pc + 2);
     return (h << 8) | l;
 }
 
@@ -50,7 +50,7 @@ inline void GZ80::LeaveHalt()
     if (halt_)
     {
         halt_ = false;
-        PC.Increment();
+        PC_.Increment();
     }
 }
 
@@ -97,43 +97,43 @@ inline void GZ80::ToggleParityFlagFromResult(u8 result)
 
 inline void GZ80::SetFlag(u8 flag)
 {
-    AF.SetLow(flag);
+    AF_.SetLow(flag);
 }
 
 inline void GZ80::FlipFlag(u8 flag)
 {
-    AF.SetLow(AF.GetLow() ^ flag);
+    AF_.SetLow(AF_.GetLow() ^ flag);
 }
 
 inline void GZ80::ToggleFlag(u8 flag)
 {
-    AF.SetLow(AF.GetLow() | flag);
+    AF_.SetLow(AF_.GetLow() | flag);
 }
 
 inline void GZ80::ClearFlag(u8 flag)
 {
-    AF.SetLow(AF.GetLow() & (~flag));
+    AF_.SetLow(AF_.GetLow() & (~flag));
 }
 
 inline bool GZ80::IsSetFlag(u8 flag)
 {
-    return (AF.GetLow() & flag) != 0;
+    return (AF_.GetLow() & flag) != 0;
 }
 
 inline void GZ80::StackPush(SixteenBitRegister* reg)
 {
-    SP.Decrement();
-    memory_impl_->Write(SP.GetValue(), reg->GetHigh());
-    SP.Decrement();
-    memory_impl_->Write(SP.GetValue(), reg->GetLow());
+    SP_.Decrement();
+    memory_impl_->Write(SP_.GetValue(), reg->GetHigh());
+    SP_.Decrement();
+    memory_impl_->Write(SP_.GetValue(), reg->GetLow());
 }
 
 inline void GZ80::StackPop(SixteenBitRegister* reg)
 {
-    reg->SetLow(memory_impl_->Read(SP.GetValue()));
-    SP.Increment();
-    reg->SetHigh(memory_impl_->Read(SP.GetValue()));
-    SP.Increment();
+    reg->SetLow(memory_impl_->Read(SP_.GetValue()));
+    SP_.Increment();
+    reg->SetHigh(memory_impl_->Read(SP_.GetValue()));
+    SP_.Increment();
 }
 
 inline void GZ80::SetInterruptMode(int mode)
@@ -153,11 +153,11 @@ inline SixteenBitRegister* GZ80::GetPrefixedRegister()
     switch (actual_prefix_)
     {
         case 0xDD:
-            return &IX;
+            return &IX_;
         case 0xFD:
-            return &IY;
+            return &IY_;
         default:
-            return &HL;
+            return &HL_;
     }
 }
 
@@ -167,36 +167,36 @@ inline u16 GZ80::GetEffectiveAddress()
     {
         case 0xDD:
         {
-            u16 address = IX.GetValue();
+            u16 address = IX_.GetValue();
             if (prefixed_cb_opcode_)
             {
                 address += static_cast<s8> (prefixed_cb_value_);
             }
             else
             {
-                address += static_cast<s8> (memory_impl_->Read(PC.GetValue()));
-                PC.Increment();
-                XY.SetValue(address);
+                address += static_cast<s8> (memory_impl_->Read(PC_.GetValue()));
+                PC_.Increment();
+                XY_.SetValue(address);
             }
             return address;
         }
         case 0xFD:
         {
-            u16 address = IY.GetValue();
+            u16 address = IY_.GetValue();
             if (prefixed_cb_opcode_)
             {
                 address += static_cast<s8> (prefixed_cb_value_);
             }
             else
             {
-                address += static_cast<s8> (memory_impl_->Read(PC.GetValue()));
-                PC.Increment();
-                XY.SetValue(address);
+                address += static_cast<s8> (memory_impl_->Read(PC_.GetValue()));
+                PC_.Increment();
+                XY_.SetValue(address);
             }
             return address;
         }
         default:
-            return HL.GetValue();
+            return HL_.GetValue();
     }
 }
 
@@ -207,8 +207,8 @@ inline bool GZ80::IsPrefixedInstruction()
 
 inline void GZ80::IncreaseR()
 {
-    u8 r = R.GetValue();
-    R.SetValue(((r + 1) & 0x7F) | (r & 0x80));
+    u8 r = R_.GetValue();
+    R_.SetValue(((r + 1) & 0x7F) | (r & 0x80));
 }
 
 inline void GZ80::OPCodes_LD(EightBitRegister* reg1, u8 value)
@@ -232,7 +232,7 @@ inline void GZ80::OPCodes_LD_dd_nn(SixteenBitRegister* reg)
     reg->SetLow(memory_impl_->Read(address));
     address++;
     reg->SetHigh(memory_impl_->Read(address));
-    XY.SetValue(address);
+    XY_.SetValue(address);
 }
 
 inline void GZ80::OPCodes_LD_nn_dd(SixteenBitRegister* reg)
@@ -241,23 +241,23 @@ inline void GZ80::OPCodes_LD_nn_dd(SixteenBitRegister* reg)
     memory_impl_->Write(address, reg->GetLow());
     address++;
     memory_impl_->Write(address, reg->GetHigh());
-    XY.SetValue(address);
+    XY_.SetValue(address);
 }
 
 inline void GZ80::OPCodes_LDI()
 {
-    u8 result = memory_impl_->Read(HL.GetValue());
-    memory_impl_->Write(DE.GetValue(), result);
-    DE.Increment();
-    HL.Increment();
-    BC.Decrement();
+    u8 result = memory_impl_->Read(HL_.GetValue());
+    memory_impl_->Write(DE_.GetValue(), result);
+    DE_.Increment();
+    HL_.Increment();
+    BC_.Decrement();
     ClearFlag(FLAG_NEGATIVE);
     ClearFlag(FLAG_HALF);
-    if (BC.GetValue() != 0)
+    if (BC_.GetValue() != 0)
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
-    u16 n = AF.GetHigh() + result;
+    u16 n = AF_.GetHigh() + result;
     if ((n & 0x08) != 0)
         ToggleFlag(FLAG_X);
     else
@@ -270,18 +270,18 @@ inline void GZ80::OPCodes_LDI()
 
 inline void GZ80::OPCodes_LDD()
 {
-    u8 result = memory_impl_->Read(HL.GetValue());
-    memory_impl_->Write(DE.GetValue(), result);
-    DE.Decrement();
-    HL.Decrement();
-    BC.Decrement();
+    u8 result = memory_impl_->Read(HL_.GetValue());
+    memory_impl_->Write(DE_.GetValue(), result);
+    DE_.Decrement();
+    HL_.Decrement();
+    BC_.Decrement();
     ClearFlag(FLAG_NEGATIVE);
     ClearFlag(FLAG_HALF);
-    if (BC.GetValue() != 0)
+    if (BC_.GetValue() != 0)
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
-    u16 n = AF.GetHigh() + result;
+    u16 n = AF_.GetHigh() + result;
     if ((n & 0x08) != 0)
         ToggleFlag(FLAG_X);
     else
@@ -294,17 +294,17 @@ inline void GZ80::OPCodes_LDD()
 
 inline void GZ80::OPCodes_RST(u16 address)
 {
-    StackPush(&PC);
-    PC.SetValue(address);
-    XY.SetValue(address);
+    StackPush(&PC_);
+    PC_.SetValue(address);
+    XY_.SetValue(address);
 }
 
 inline void GZ80::OPCodes_CALL_nn()
 {
     u16 address = FetchArg16();
-    StackPush(&PC);
-    PC.SetValue(address);
-    XY.SetValue(address);
+    StackPush(&PC_);
+    PC_.SetValue(address);
+    XY_.SetValue(address);
 }
 
 inline void GZ80::OPCodes_CALL_nn_Conditional(bool condition)
@@ -312,44 +312,44 @@ inline void GZ80::OPCodes_CALL_nn_Conditional(bool condition)
     u16 address = FetchArg16();
     if (condition)
     {
-        StackPush(&PC);
-        PC.SetValue(address);
+        StackPush(&PC_);
+        PC_.SetValue(address);
         branched_ = true;
     }
-    XY.SetValue(address);
+    XY_.SetValue(address);
 }
 
 inline void GZ80::OPCodes_JP_nn()
 {
-    u8 l = memory_impl_->Read(PC.GetValue());
-    u8 h = memory_impl_->Read(PC.GetValue() + 1);
+    u8 l = memory_impl_->Read(PC_.GetValue());
+    u8 h = memory_impl_->Read(PC_.GetValue() + 1);
     u16 address = (h << 8) | l;
-    PC.SetValue(address);
-    XY.SetValue(address);
+    PC_.SetValue(address);
+    XY_.SetValue(address);
 }
 
 inline void GZ80::OPCodes_JP_nn_Conditional(bool condition)
 {
-    u8 l = memory_impl_->Read(PC.GetValue());
-    u8 h = memory_impl_->Read(PC.GetValue() + 1);
+    u8 l = memory_impl_->Read(PC_.GetValue());
+    u8 h = memory_impl_->Read(PC_.GetValue() + 1);
     u16 address = (h << 8) | l;
     if (condition)
     {
-        PC.SetValue(address);
+        PC_.SetValue(address);
         branched_ = true;
     }
     else
     {
-        PC.Increment();
-        PC.Increment();
+        PC_.Increment();
+        PC_.Increment();
     }
-    XY.SetValue(address);
+    XY_.SetValue(address);
 }
 
 inline void GZ80::OPCodes_JR_n()
 {
-    u16 pc = PC.GetValue();
-    PC.SetValue(pc + 1 + (static_cast<s8> (memory_impl_->Read(pc))));
+    u16 pc = PC_.GetValue();
+    PC_.SetValue(pc + 1 + (static_cast<s8> (memory_impl_->Read(pc))));
 }
 
 inline void GZ80::OPCodes_JR_n_conditional(bool condition)
@@ -360,13 +360,13 @@ inline void GZ80::OPCodes_JR_n_conditional(bool condition)
         branched_ = true;
     }
     else
-        PC.Increment();
+        PC_.Increment();
 }
 
 inline void GZ80::OPCodes_RET()
 {
-    StackPop(&PC);
-    XY.SetValue(PC.GetValue());
+    StackPop(&PC_);
+    XY_.SetValue(PC_.GetValue());
 }
 
 inline void GZ80::OPCodes_RET_Conditional(bool condition)
@@ -380,7 +380,7 @@ inline void GZ80::OPCodes_RET_Conditional(bool condition)
 
 inline void GZ80::OPCodes_IN_C(EightBitRegister* reg)
 {
-    u8 result = io_ports_impl_->Input(BC.GetLow());
+    u8 result = io_ports_impl_->Input(BC_.GetLow());
     if (IsValidPointer(reg))
         reg->SetValue(result);
     IsSetFlag(FLAG_CARRY) ? SetFlag(FLAG_CARRY) : ClearAllFlags();
@@ -392,16 +392,16 @@ inline void GZ80::OPCodes_IN_C(EightBitRegister* reg)
 
 inline void GZ80::OPCodes_INI()
 {
-    XY.SetValue(BC.GetValue() + 1);
-    u8 result = io_ports_impl_->Input(BC.GetLow());
-    memory_impl_->Write(HL.GetValue(), result);
-    OPCodes_DEC(BC.GetHighRegister());
-    HL.Increment();
+    XY_.SetValue(BC_.GetValue() + 1);
+    u8 result = io_ports_impl_->Input(BC_.GetLow());
+    memory_impl_->Write(HL_.GetValue(), result);
+    OPCodes_DEC(BC_.GetHighRegister());
+    HL_.Increment();
     if ((result & 0x80) != 0)
         ToggleFlag(FLAG_NEGATIVE);
     else
         ClearFlag(FLAG_NEGATIVE);
-    if ((result + ((BC.GetLow() + 1) & 0xFF)) > 0xFF)
+    if ((result + ((BC_.GetLow() + 1) & 0xFF)) > 0xFF)
     {
         ToggleFlag(FLAG_CARRY);
         ToggleFlag(FLAG_HALF);
@@ -411,7 +411,7 @@ inline void GZ80::OPCodes_INI()
         ClearFlag(FLAG_CARRY);
         ClearFlag(FLAG_HALF);
     }
-    if (((result + ((BC.GetLow() + 1) & 0xFF)) & 0x07) ^ BC.GetHigh())
+    if (((result + ((BC_.GetLow() + 1) & 0xFF)) & 0x07) ^ BC_.GetHigh())
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
@@ -419,16 +419,16 @@ inline void GZ80::OPCodes_INI()
 
 inline void GZ80::OPCodes_IND()
 {
-    XY.SetValue(BC.GetValue() - 1);
-    u8 result = io_ports_impl_->Input(BC.GetLow());
-    memory_impl_->Write(HL.GetValue(), result);
-    OPCodes_DEC(BC.GetHighRegister());
-    HL.Decrement();
+    XY_.SetValue(BC_.GetValue() - 1);
+    u8 result = io_ports_impl_->Input(BC_.GetLow());
+    memory_impl_->Write(HL_.GetValue(), result);
+    OPCodes_DEC(BC_.GetHighRegister());
+    HL_.Decrement();
     if ((result & 0x80) != 0)
         ToggleFlag(FLAG_NEGATIVE);
     else
         ClearFlag(FLAG_NEGATIVE);
-    if ((result + ((BC.GetLow() - 1) & 0xFF)) > 0xFF)
+    if ((result + ((BC_.GetLow() - 1) & 0xFF)) > 0xFF)
     {
         ToggleFlag(FLAG_CARRY);
         ToggleFlag(FLAG_HALF);
@@ -438,7 +438,7 @@ inline void GZ80::OPCodes_IND()
         ClearFlag(FLAG_CARRY);
         ClearFlag(FLAG_HALF);
     }
-    if (((result + ((BC.GetLow() + 1) & 0xFF)) & 0x07) ^ BC.GetHigh())
+    if (((result + ((BC_.GetLow() + 1) & 0xFF)) & 0x07) ^ BC_.GetHigh())
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
@@ -446,21 +446,21 @@ inline void GZ80::OPCodes_IND()
 
 inline void GZ80::OPCodes_OUT_C(EightBitRegister* reg)
 {
-    io_ports_impl_->Output(BC.GetLow(), reg->GetValue());
+    io_ports_impl_->Output(BC_.GetLow(), reg->GetValue());
 }
 
 inline void GZ80::OPCodes_OUTI()
 {
-    u8 result = memory_impl_->Read(HL.GetValue());
-    io_ports_impl_->Output(BC.GetLow(), result);
-    OPCodes_DEC(BC.GetHighRegister());
-    XY.SetValue(BC.GetValue() + 1);
-    HL.Increment();
+    u8 result = memory_impl_->Read(HL_.GetValue());
+    io_ports_impl_->Output(BC_.GetLow(), result);
+    OPCodes_DEC(BC_.GetHighRegister());
+    XY_.SetValue(BC_.GetValue() + 1);
+    HL_.Increment();
     if ((result & 0x80) != 0)
         ToggleFlag(FLAG_NEGATIVE);
     else
         ClearFlag(FLAG_NEGATIVE);
-    if ((HL.GetLow() + result) > 0xFF)
+    if ((HL_.GetLow() + result) > 0xFF)
     {
         ToggleFlag(FLAG_CARRY);
         ToggleFlag(FLAG_HALF);
@@ -470,7 +470,7 @@ inline void GZ80::OPCodes_OUTI()
         ClearFlag(FLAG_CARRY);
         ClearFlag(FLAG_HALF);
     }
-    if (((HL.GetLow() + result) & 0x07) ^ BC.GetHigh())
+    if (((HL_.GetLow() + result) & 0x07) ^ BC_.GetHigh())
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
@@ -478,16 +478,16 @@ inline void GZ80::OPCodes_OUTI()
 
 inline void GZ80::OPCodes_OUTD()
 {
-    u8 result = memory_impl_->Read(HL.GetValue());
-    io_ports_impl_->Output(BC.GetLow(), result);
-    OPCodes_DEC(BC.GetHighRegister());
-    XY.SetValue(BC.GetValue() - 1);
-    HL.Decrement();
+    u8 result = memory_impl_->Read(HL_.GetValue());
+    io_ports_impl_->Output(BC_.GetLow(), result);
+    OPCodes_DEC(BC_.GetHighRegister());
+    XY_.SetValue(BC_.GetValue() - 1);
+    HL_.Decrement();
     if ((result & 0x80) != 0)
         ToggleFlag(FLAG_NEGATIVE);
     else
         ClearFlag(FLAG_NEGATIVE);
-    if ((HL.GetLow() + result) > 0xFF)
+    if ((HL_.GetLow() + result) > 0xFF)
     {
         ToggleFlag(FLAG_CARRY);
         ToggleFlag(FLAG_HALF);
@@ -497,7 +497,7 @@ inline void GZ80::OPCodes_OUTD()
         ClearFlag(FLAG_CARRY);
         ClearFlag(FLAG_HALF);
     }
-    if (((HL.GetLow() + result) & 0x07) ^ BC.GetHigh())
+    if (((HL_.GetLow() + result) & 0x07) ^ BC_.GetHigh())
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
@@ -512,8 +512,8 @@ inline void GZ80::OPCodes_EX(SixteenBitRegister* reg1, SixteenBitRegister* reg2)
 
 inline void GZ80::OPCodes_OR(u8 number)
 {
-    u8 result = AF.GetHigh() | number;
-    AF.SetHigh(result);
+    u8 result = AF_.GetHigh() | number;
+    AF_.SetHigh(result);
     ClearAllFlags();
     ToggleZeroFlagFromResult(result);
     ToggleSignFlagFromResult(result);
@@ -523,8 +523,8 @@ inline void GZ80::OPCodes_OR(u8 number)
 
 inline void GZ80::OPCodes_XOR(u8 number)
 {
-    u8 result = AF.GetHigh() ^ number;
-    AF.SetHigh(result);
+    u8 result = AF_.GetHigh() ^ number;
+    AF_.SetHigh(result);
     ClearAllFlags();
     ToggleZeroFlagFromResult(result);
     ToggleSignFlagFromResult(result);
@@ -534,8 +534,8 @@ inline void GZ80::OPCodes_XOR(u8 number)
 
 inline void GZ80::OPCodes_AND(u8 number)
 {
-    u8 result = AF.GetHigh() & number;
-    AF.SetHigh(result);
+    u8 result = AF_.GetHigh() & number;
+    AF_.SetHigh(result);
     SetFlag(FLAG_HALF);
     ToggleZeroFlagFromResult(result);
     ToggleSignFlagFromResult(result);
@@ -545,8 +545,8 @@ inline void GZ80::OPCodes_AND(u8 number)
 
 inline void GZ80::OPCodes_CP(u8 number)
 {
-    int result = AF.GetHigh() - number;
-    int carrybits = AF.GetHigh() ^ number ^ result;
+    int result = AF_.GetHigh() - number;
+    int carrybits = AF_.GetHigh() ^ number ^ result;
     u8 final_result = static_cast<u8> (result);
     SetFlag(FLAG_NEGATIVE);
     ToggleZeroFlagFromResult(final_result);
@@ -562,9 +562,9 @@ inline void GZ80::OPCodes_CP(u8 number)
 
 inline void GZ80::OPCodes_CPI()
 {
-    u8 number = memory_impl_->Read(HL.GetValue());
-    int result = AF.GetHigh() - number;
-    int carrybits = AF.GetHigh() ^ number ^ result;
+    u8 number = memory_impl_->Read(HL_.GetValue());
+    int result = AF_.GetHigh() - number;
+    int carrybits = AF_.GetHigh() ^ number ^ result;
     u8 final_result = static_cast<u8> (result);
     ToggleFlag(FLAG_NEGATIVE);
     ToggleZeroFlagFromResult(final_result);
@@ -573,13 +573,13 @@ inline void GZ80::OPCodes_CPI()
         ToggleFlag(FLAG_HALF);
     else
         ClearFlag(FLAG_HALF);
-    HL.Increment();
-    BC.Decrement();
-    if (BC.GetValue() != 0)
+    HL_.Increment();
+    BC_.Decrement();
+    if (BC_.GetValue() != 0)
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
-    int n = AF.GetHigh() - number - (IsSetFlag(FLAG_HALF) ? 1 : 0);
+    int n = AF_.GetHigh() - number - (IsSetFlag(FLAG_HALF) ? 1 : 0);
     if ((n & 0x08) != 0)
         ToggleFlag(FLAG_X);
     else
@@ -588,14 +588,14 @@ inline void GZ80::OPCodes_CPI()
         ToggleFlag(FLAG_Y);
     else
         ClearFlag(FLAG_Y);
-    XY.Increment();
+    XY_.Increment();
 }
 
 inline void GZ80::OPCodes_CPD()
 {
-    u8 number = memory_impl_->Read(HL.GetValue());
-    int result = AF.GetHigh() - number;
-    int carrybits = AF.GetHigh() ^ number ^ result;
+    u8 number = memory_impl_->Read(HL_.GetValue());
+    int result = AF_.GetHigh() - number;
+    int carrybits = AF_.GetHigh() ^ number ^ result;
     u8 final_result = static_cast<u8> (result);
     ToggleFlag(FLAG_NEGATIVE);
     ToggleZeroFlagFromResult(final_result);
@@ -604,13 +604,13 @@ inline void GZ80::OPCodes_CPD()
         ToggleFlag(FLAG_HALF);
     else
         ClearFlag(FLAG_HALF);
-    HL.Decrement();
-    BC.Decrement();
-    if (BC.GetValue() != 0)
+    HL_.Decrement();
+    BC_.Decrement();
+    if (BC_.GetValue() != 0)
         ToggleFlag(FLAG_PARITY);
     else
         ClearFlag(FLAG_PARITY);
-    int n = AF.GetHigh() - number - (IsSetFlag(FLAG_HALF) ? 1 : 0);
+    int n = AF_.GetHigh() - number - (IsSetFlag(FLAG_HALF) ? 1 : 0);
     if ((n & 0x08) != 0)
         ToggleFlag(FLAG_X);
     else
@@ -619,7 +619,7 @@ inline void GZ80::OPCodes_CPD()
         ToggleFlag(FLAG_Y);
     else
         ClearFlag(FLAG_Y);
-    XY.Decrement();
+    XY_.Decrement();
 }
 
 inline void GZ80::OPCodes_INC(EightBitRegister* reg)
@@ -684,10 +684,10 @@ inline void GZ80::OPCodes_DEC_HL()
 
 inline void GZ80::OPCodes_ADD(u8 number)
 {
-    int result = AF.GetHigh() + number;
-    int carrybits = AF.GetHigh() ^ number ^ result;
+    int result = AF_.GetHigh() + number;
+    int carrybits = AF_.GetHigh() ^ number ^ result;
     u8 final_result = static_cast<u8> (result);
-    AF.SetHigh(final_result);
+    AF_.SetHigh(final_result);
     ClearAllFlags();
     ToggleZeroFlagFromResult(final_result);
     ToggleSignFlagFromResult(final_result);
@@ -702,10 +702,10 @@ inline void GZ80::OPCodes_ADD(u8 number)
 
 inline void GZ80::OPCodes_ADC(u8 number)
 {
-    int result = AF.GetHigh() + number + (IsSetFlag(FLAG_CARRY) ? 1 : 0);
-    int carrybits = AF.GetHigh() ^ number ^ result;
+    int result = AF_.GetHigh() + number + (IsSetFlag(FLAG_CARRY) ? 1 : 0);
+    int carrybits = AF_.GetHigh() ^ number ^ result;
     u8 final_result = static_cast<u8> (result);
-    AF.SetHigh(final_result);
+    AF_.SetHigh(final_result);
     ClearAllFlags();
     ToggleZeroFlagFromResult(final_result);
     ToggleSignFlagFromResult(final_result);
@@ -720,10 +720,10 @@ inline void GZ80::OPCodes_ADC(u8 number)
 
 inline void GZ80::OPCodes_SUB(u8 number)
 {
-    int result = AF.GetHigh() - number;
-    int carrybits = AF.GetHigh() ^ number ^ result;
+    int result = AF_.GetHigh() - number;
+    int carrybits = AF_.GetHigh() ^ number ^ result;
     u8 final_result = static_cast<u8> (result);
-    AF.SetHigh(final_result);
+    AF_.SetHigh(final_result);
     SetFlag(FLAG_NEGATIVE);
     ToggleZeroFlagFromResult(final_result);
     ToggleSignFlagFromResult(final_result);
@@ -738,10 +738,10 @@ inline void GZ80::OPCodes_SUB(u8 number)
 
 inline void GZ80::OPCodes_SBC(u8 number)
 {
-    int result = AF.GetHigh() - number - (IsSetFlag(FLAG_CARRY) ? 1 : 0);
-    int carrybits = AF.GetHigh() ^ number ^ result;
+    int result = AF_.GetHigh() - number - (IsSetFlag(FLAG_CARRY) ? 1 : 0);
+    int carrybits = AF_.GetHigh() ^ number ^ result;
     u8 final_result = static_cast<u8> (result);
-    AF.SetHigh(final_result);
+    AF_.SetHigh(final_result);
     SetFlag(FLAG_NEGATIVE);
     ToggleZeroFlagFromResult(final_result);
     ToggleSignFlagFromResult(final_result);
@@ -757,7 +757,7 @@ inline void GZ80::OPCodes_SBC(u8 number)
 inline void GZ80::OPCodes_ADD_HL(u16 number)
 {
     SixteenBitRegister* reg = GetPrefixedRegister();
-    XY.SetValue(reg->GetValue() + 1);
+    XY_.SetValue(reg->GetValue() + 1);
     int result = reg->GetValue() + number;
     int carrybits = reg->GetValue() ^ number ^ result;
     reg->SetValue(static_cast<u16> (result));
@@ -775,14 +775,14 @@ inline void GZ80::OPCodes_ADD_HL(u16 number)
 
 inline void GZ80::OPCodes_ADC_HL(u16 number)
 {
-    XY.SetValue(HL.GetValue() + 1);
-    int result = HL.GetValue() + number + (IsSetFlag(FLAG_CARRY) ? 1 : 0);
-    int carrybits = HL.GetValue() ^ number ^ result;
+    XY_.SetValue(HL_.GetValue() + 1);
+    int result = HL_.GetValue() + number + (IsSetFlag(FLAG_CARRY) ? 1 : 0);
+    int carrybits = HL_.GetValue() ^ number ^ result;
     u16 final_result = static_cast<u16> (result);
-    HL.SetValue(final_result);
+    HL_.SetValue(final_result);
     ClearAllFlags();
-    ToggleXYFlagsFromResult(HL.GetHigh());
-    ToggleSignFlagFromResult(HL.GetHigh());
+    ToggleXYFlagsFromResult(HL_.GetHigh());
+    ToggleSignFlagFromResult(HL_.GetHigh());
     ToggleZeroFlagFromResult(final_result);
     if ((carrybits & 0x10000) != 0)
         ToggleFlag(FLAG_CARRY);
@@ -794,14 +794,14 @@ inline void GZ80::OPCodes_ADC_HL(u16 number)
 
 inline void GZ80::OPCodes_SBC_HL(u16 number)
 {
-    XY.SetValue(HL.GetValue() + 1);
-    int result = HL.GetValue() - number - (IsSetFlag(FLAG_CARRY) ? 1 : 0);
-    int carrybits = HL.GetValue() ^ number ^ result;
+    XY_.SetValue(HL_.GetValue() + 1);
+    int result = HL_.GetValue() - number - (IsSetFlag(FLAG_CARRY) ? 1 : 0);
+    int carrybits = HL_.GetValue() ^ number ^ result;
     u16 final_result = static_cast<u16> (result);
-    HL.SetValue(final_result);
+    HL_.SetValue(final_result);
     SetFlag(FLAG_NEGATIVE);
-    ToggleXYFlagsFromResult(HL.GetHigh());
-    ToggleSignFlagFromResult(HL.GetHigh());
+    ToggleXYFlagsFromResult(HL_.GetHigh());
+    ToggleSignFlagFromResult(HL_.GetHigh());
     ToggleZeroFlagFromResult(final_result);
     if ((carrybits & 0x10000) != 0)
         ToggleFlag(FLAG_CARRY);
@@ -1180,7 +1180,7 @@ inline void GZ80::OPCodes_BIT_HL(int bit)
     }
     else if (bit == 7)
         ToggleFlag(FLAG_SIGN);
-    u8 xy = IsPrefixedInstruction() ? ((address >> 8) & 0xFF) : XY.GetHigh();
+    u8 xy = IsPrefixedInstruction() ? ((address >> 8) & 0xFF) : XY_.GetHigh();
     if (IsSetBit(xy, 3))
         ToggleFlag(FLAG_X);
     if (IsSetBit(xy, 5))

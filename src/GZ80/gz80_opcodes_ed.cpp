@@ -25,32 +25,32 @@ namespace gz80
 void GZ80::OPCodeED0x40()
 {
     // IN B,(C)
-    OPCodes_IN_C(BC.GetHighRegister());
+    OPCodes_IN_C(BC_.GetHighRegister());
 }
 
 void GZ80::OPCodeED0x41()
 {
     // OUT (C),B
-    OPCodes_OUT_C(BC.GetHighRegister());
+    OPCodes_OUT_C(BC_.GetHighRegister());
 }
 
 void GZ80::OPCodeED0x42()
 {
     // SBC HL,BC
-    OPCodes_SBC_HL(BC.GetValue());
+    OPCodes_SBC_HL(BC_.GetValue());
 }
 
 void GZ80::OPCodeED0x43()
 {
     // LD (nn),BC
-    OPCodes_LD_nn_dd(&BC);
+    OPCodes_LD_nn_dd(&BC_);
 }
 
 void GZ80::OPCodeED0x44()
 {
     // NEG
-    u8 value = AF.GetHigh();
-    AF.SetHigh(0x00);
+    u8 value = AF_.GetHigh();
+    AF_.SetHigh(0x00);
     OPCodes_SUB(value);
 }
 
@@ -70,31 +70,31 @@ void GZ80::OPCodeED0x46()
 void GZ80::OPCodeED0x47()
 {
     // LD I,A
-    OPCodes_LD(&I, AF.GetHigh());
+    OPCodes_LD(&I_, AF_.GetHigh());
 }
 
 void GZ80::OPCodeED0x48()
 {
     // IN C,(C)
-    OPCodes_IN_C(BC.GetLowRegister());
+    OPCodes_IN_C(BC_.GetLowRegister());
 }
 
 void GZ80::OPCodeED0x49()
 {
     // OUT (C),C
-    OPCodes_OUT_C(BC.GetLowRegister());
+    OPCodes_OUT_C(BC_.GetLowRegister());
 }
 
 void GZ80::OPCodeED0x4A()
 {
     // ADC HL,BC
-    OPCodes_ADC_HL(BC.GetValue());
+    OPCodes_ADC_HL(BC_.GetValue());
 }
 
 void GZ80::OPCodeED0x4B()
 {
     // LD BC,(nn)
-    OPCodes_LD_dd_nn(&BC);
+    OPCodes_LD_dd_nn(&BC_);
 }
 
 void GZ80::OPCodeED0x4C()
@@ -121,31 +121,31 @@ void GZ80::OPCodeED0x4E()
 void GZ80::OPCodeED0x4F()
 {
     // LD R,A
-    OPCodes_LD(&R, AF.GetHigh());
+    OPCodes_LD(&R_, AF_.GetHigh());
 }
 
 void GZ80::OPCodeED0x50()
 {
     // IN D,(C)
-    OPCodes_IN_C(DE.GetHighRegister());
+    OPCodes_IN_C(DE_.GetHighRegister());
 }
 
 void GZ80::OPCodeED0x51()
 {
     // OUT (C),D
-    OPCodes_OUT_C(DE.GetHighRegister());
+    OPCodes_OUT_C(DE_.GetHighRegister());
 }
 
 void GZ80::OPCodeED0x52()
 {
     // SBC HL,DE
-    OPCodes_SBC_HL(DE.GetValue());
+    OPCodes_SBC_HL(DE_.GetValue());
 }
 
 void GZ80::OPCodeED0x53()
 {
     // LD (nn),DE
-    OPCodes_LD_nn_dd(&DE);
+    OPCodes_LD_nn_dd(&DE_);
 }
 
 void GZ80::OPCodeED0x54()
@@ -171,8 +171,8 @@ void GZ80::OPCodeED0x56()
 void GZ80::OPCodeED0x57()
 {
     // LD A,I
-    u8 value = I.GetValue();
-    OPCodes_LD(AF.GetHighRegister(), value);
+    u8 value = I_.GetValue();
+    OPCodes_LD(AF_.GetHighRegister(), value);
     ToggleSignFlagFromResult(value);
     ToggleZeroFlagFromResult(value);
     ToggleXYFlagsFromResult(value);
@@ -187,25 +187,25 @@ void GZ80::OPCodeED0x57()
 void GZ80::OPCodeED0x58()
 {
     // IN E,(C)
-    OPCodes_IN_C(DE.GetLowRegister());
+    OPCodes_IN_C(DE_.GetLowRegister());
 }
 
 void GZ80::OPCodeED0x59()
 {
     // OUT (C),E
-    OPCodes_OUT_C(DE.GetLowRegister());
+    OPCodes_OUT_C(DE_.GetLowRegister());
 }
 
 void GZ80::OPCodeED0x5A()
 {
     // ADC HL,DE
-    OPCodes_ADC_HL(DE.GetValue());
+    OPCodes_ADC_HL(DE_.GetValue());
 }
 
 void GZ80::OPCodeED0x5B()
 {
     // LD DE,(nn)
-    OPCodes_LD_dd_nn(&DE);
+    OPCodes_LD_dd_nn(&DE_);
 }
 
 void GZ80::OPCodeED0x5C()
@@ -231,8 +231,8 @@ void GZ80::OPCodeED0x5E()
 void GZ80::OPCodeED0x5F()
 {
     // LD A,R
-    u8 value = R.GetValue();
-    OPCodes_LD(AF.GetHighRegister(), value);
+    u8 value = R_.GetValue();
+    OPCodes_LD(AF_.GetHighRegister(), value);
     ToggleSignFlagFromResult(value);
     ToggleZeroFlagFromResult(value);
     ToggleXYFlagsFromResult(value);
@@ -247,25 +247,25 @@ void GZ80::OPCodeED0x5F()
 void GZ80::OPCodeED0x60()
 {
     // IN H,(C)
-    OPCodes_IN_C(HL.GetHighRegister());
+    OPCodes_IN_C(HL_.GetHighRegister());
 }
 
 void GZ80::OPCodeED0x61()
 {
     // OUT (C),H
-    OPCodes_OUT_C(HL.GetHighRegister());
+    OPCodes_OUT_C(HL_.GetHighRegister());
 }
 
 void GZ80::OPCodeED0x62()
 {
     // SBC HL,HL
-    OPCodes_SBC_HL(HL.GetValue());
+    OPCodes_SBC_HL(HL_.GetValue());
 }
 
 void GZ80::OPCodeED0x63()
 {
     // LD (nn),HL
-    OPCodes_LD_nn_dd(&HL);
+    OPCodes_LD_nn_dd(&HL_);
 }
 
 void GZ80::OPCodeED0x64()
@@ -292,41 +292,41 @@ void GZ80::OPCodeED0x66()
 void GZ80::OPCodeED0x67()
 {
     // RRD
-    u16 address = HL.GetValue();
+    u16 address = HL_.GetValue();
     u8 value = memory_impl_->Read(address);
-    u8 result = (AF.GetHigh() & 0xF0) | (value & 0x0F);
-    memory_impl_->Write(address, ((AF.GetHigh() << 4) & 0xF0) | ((value >> 4) & 0x0F));
-    AF.SetHigh(result);
+    u8 result = (AF_.GetHigh() & 0xF0) | (value & 0x0F);
+    memory_impl_->Write(address, ((AF_.GetHigh() << 4) & 0xF0) | ((value >> 4) & 0x0F));
+    AF_.SetHigh(result);
     IsSetFlag(FLAG_CARRY) ? SetFlag(FLAG_CARRY) : ClearAllFlags();
     ToggleZeroFlagFromResult(result);
     ToggleSignFlagFromResult(result);
     ToggleParityFlagFromResult(result);
     ToggleXYFlagsFromResult(result);
-    XY.SetValue(address + 1);
+    XY_.SetValue(address + 1);
 }
 
 void GZ80::OPCodeED0x68()
 {
     // IN L,(C)
-    OPCodes_IN_C(HL.GetLowRegister());
+    OPCodes_IN_C(HL_.GetLowRegister());
 }
 
 void GZ80::OPCodeED0x69()
 {
     // OUT (C),L
-    OPCodes_OUT_C(HL.GetLowRegister());
+    OPCodes_OUT_C(HL_.GetLowRegister());
 }
 
 void GZ80::OPCodeED0x6A()
 {
     // ADC HL,HL
-    OPCodes_ADC_HL(HL.GetValue());
+    OPCodes_ADC_HL(HL_.GetValue());
 }
 
 void GZ80::OPCodeED0x6B()
 {
     // LD HL,(nn)
-    OPCodes_LD_dd_nn(&HL);
+    OPCodes_LD_dd_nn(&HL_);
 }
 
 void GZ80::OPCodeED0x6C()
@@ -353,17 +353,17 @@ void GZ80::OPCodeED0x6E()
 void GZ80::OPCodeED0x6F()
 {
     // RLD
-    u16 address = HL.GetValue();
+    u16 address = HL_.GetValue();
     u8 value = memory_impl_->Read(address);
-    u8 result = (AF.GetHigh() & 0xF0) | ((value >> 4) & 0x0F);
-    memory_impl_->Write(address, ((value << 4) & 0xF0) | (AF.GetHigh() & 0x0F));
-    AF.SetHigh(result);
+    u8 result = (AF_.GetHigh() & 0xF0) | ((value >> 4) & 0x0F);
+    memory_impl_->Write(address, ((value << 4) & 0xF0) | (AF_.GetHigh() & 0x0F));
+    AF_.SetHigh(result);
     IsSetFlag(FLAG_CARRY) ? SetFlag(FLAG_CARRY) : ClearAllFlags();
     ToggleZeroFlagFromResult(result);
     ToggleSignFlagFromResult(result);
     ToggleParityFlagFromResult(result);
     ToggleXYFlagsFromResult(result);
-    XY.SetValue(address + 1);
+    XY_.SetValue(address + 1);
 }
 
 void GZ80::OPCodeED0x70()
@@ -377,19 +377,19 @@ void GZ80::OPCodeED0x71()
 {
     // OUT (C),0*
     UndocumentedOPCode();
-    io_ports_impl_->Output(BC.GetLow(), 0);
+    io_ports_impl_->Output(BC_.GetLow(), 0);
 }
 
 void GZ80::OPCodeED0x72()
 {
     // SBC HL,SP
-    OPCodes_SBC_HL(SP.GetValue());
+    OPCodes_SBC_HL(SP_.GetValue());
 }
 
 void GZ80::OPCodeED0x73()
 {
     // LD (nn),SP
-    OPCodes_LD_nn_dd(&SP);
+    OPCodes_LD_nn_dd(&SP_);
 }
 
 void GZ80::OPCodeED0x74()
@@ -416,27 +416,27 @@ void GZ80::OPCodeED0x76()
 void GZ80::OPCodeED0x78()
 {
     // IN A,(C)
-    OPCodes_IN_C(AF.GetHighRegister());
-    XY.SetValue(BC.GetValue() + 1);
+    OPCodes_IN_C(AF_.GetHighRegister());
+    XY_.SetValue(BC_.GetValue() + 1);
 }
 
 void GZ80::OPCodeED0x79()
 {
     // OUT (C),A
-    OPCodes_OUT_C(AF.GetHighRegister());
-    XY.SetValue(BC.GetValue() + 1);
+    OPCodes_OUT_C(AF_.GetHighRegister());
+    XY_.SetValue(BC_.GetValue() + 1);
 }
 
 void GZ80::OPCodeED0x7A()
 {
     // ADC HL,SP
-    OPCodes_ADC_HL(SP.GetValue());
+    OPCodes_ADC_HL(SP_.GetValue());
 }
 
 void GZ80::OPCodeED0x7B()
 {
     // LD SP,(nn)
-    OPCodes_LD_dd_nn(&SP);
+    OPCodes_LD_dd_nn(&SP_);
 }
 
 void GZ80::OPCodeED0x7C()
@@ -512,11 +512,11 @@ void GZ80::OPCodeED0xB0()
 {
     // LDIR
     OPCodes_LDI();
-    if (BC.GetValue() != 0)
+    if (BC_.GetValue() != 0)
     {
-        PC.Decrement();
-        PC.Decrement();
-        XY.SetValue(PC.GetValue() + 1);
+        PC_.Decrement();
+        PC_.Decrement();
+        XY_.SetValue(PC_.GetValue() + 1);
         t_states_ += 5;
     }
 }
@@ -525,11 +525,11 @@ void GZ80::OPCodeED0xB1()
 {
     // CPIR
     OPCodes_CPI();
-    if ((BC.GetValue() != 0) && !IsSetFlag(FLAG_ZERO))
+    if ((BC_.GetValue() != 0) && !IsSetFlag(FLAG_ZERO))
     {
-        PC.Decrement();
-        PC.Decrement();
-        XY.SetValue(PC.GetValue() + 1);
+        PC_.Decrement();
+        PC_.Decrement();
+        XY_.SetValue(PC_.GetValue() + 1);
         t_states_ += 5;
     }
 }
@@ -538,10 +538,10 @@ void GZ80::OPCodeED0xB2()
 {
     // INIR
     OPCodes_INI();
-    if (BC.GetHigh() != 0)
+    if (BC_.GetHigh() != 0)
     {
-        PC.Decrement();
-        PC.Decrement();
+        PC_.Decrement();
+        PC_.Decrement();
         t_states_ += 5;
     }
 }
@@ -550,10 +550,10 @@ void GZ80::OPCodeED0xB3()
 {
     // OTIR
     OPCodes_OUTI();
-    if (BC.GetHigh() != 0)
+    if (BC_.GetHigh() != 0)
     {
-        PC.Decrement();
-        PC.Decrement();
+        PC_.Decrement();
+        PC_.Decrement();
         t_states_ += 5;
     }
 }
@@ -562,11 +562,11 @@ void GZ80::OPCodeED0xB8()
 {
     // LDDR
     OPCodes_LDD();
-    if (BC.GetValue() != 0)
+    if (BC_.GetValue() != 0)
     {
-        PC.Decrement();
-        PC.Decrement();
-        XY.SetValue(PC.GetValue() + 1);
+        PC_.Decrement();
+        PC_.Decrement();
+        XY_.SetValue(PC_.GetValue() + 1);
         t_states_ += 5;
     }
 }
@@ -575,11 +575,11 @@ void GZ80::OPCodeED0xB9()
 {
     // CPDR
     OPCodes_CPD();
-    if ((BC.GetValue() != 0) && !IsSetFlag(FLAG_ZERO))
+    if ((BC_.GetValue() != 0) && !IsSetFlag(FLAG_ZERO))
     {
-        PC.Decrement();
-        PC.Decrement();
-        XY.SetValue(PC.GetValue() + 1);
+        PC_.Decrement();
+        PC_.Decrement();
+        XY_.SetValue(PC_.GetValue() + 1);
         t_states_ += 5;
     }
 }
@@ -588,10 +588,10 @@ void GZ80::OPCodeED0xBA()
 {
     // INDR
     OPCodes_IND();
-    if (BC.GetHigh() != 0)
+    if (BC_.GetHigh() != 0)
     {
-        PC.Decrement();
-        PC.Decrement();
+        PC_.Decrement();
+        PC_.Decrement();
         t_states_ += 5;
     }
 }
@@ -600,10 +600,10 @@ void GZ80::OPCodeED0xBB()
 {
     // OTDR
     OPCodes_OUTD();
-    if (BC.GetHigh() != 0)
+    if (BC_.GetHigh() != 0)
     {
-        PC.Decrement();
-        PC.Decrement();
+        PC_.Decrement();
+        PC_.Decrement();
         t_states_ += 5;
     }
 }

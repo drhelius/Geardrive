@@ -63,21 +63,21 @@ void GZ80::Reset()
     t_states_ = 0;
     just_after_ei_ = false;
     interrupt_mode_ = 1;
-    PC.SetValue(0x0000);
-    SP.SetValue(0xDFF0);
-    IX.SetValue(0xFFFF);
-    IY.SetValue(0xFFFF);
-    AF.SetValue(0x0040);  // Zero flag set
-    BC.SetValue(0x0000);
-    DE.SetValue(0x0000);
-    HL.SetValue(0x0000);
-    AF2.SetValue(0x0000);
-    BC2.SetValue(0x0000);
-    DE2.SetValue(0x0000);
-    HL2.SetValue(0x0000);
-    XY.SetValue(0x0000);
-    I.SetValue(0x00);
-    R.SetValue(0x00);
+    PC_.SetValue(0x0000);
+    SP_.SetValue(0xDFF0);
+    IX_.SetValue(0xFFFF);
+    IY_.SetValue(0xFFFF);
+    AF_.SetValue(0x0040);  // Zero flag set
+    BC_.SetValue(0x0000);
+    DE_.SetValue(0x0000);
+    HL_.SetValue(0x0000);
+    AF2_.SetValue(0x0000);
+    BC2_.SetValue(0x0000);
+    DE2_.SetValue(0x0000);
+    HL2_.SetValue(0x0000);
+    XY_.SetValue(0x0000);
+    I_.SetValue(0x00);
+    R_.SetValue(0x00);
     interrupt_requested_ = false;
     nmi_interrupt_requested_ = false;
     prefixed_cb_opcode_ = false;
@@ -105,11 +105,11 @@ unsigned int GZ80::Tick()
         LeaveHalt();
         nmi_interrupt_requested_ = false;
         iff1_ = false;
-        StackPush(&PC);
-        PC.SetValue(0x0066);
+        StackPush(&PC_);
+        PC_.SetValue(0x0066);
         t_states_ += 11;
         IncreaseR();
-        XY.SetValue(PC.GetValue());
+        XY_.SetValue(PC_.GetValue());
         return t_states_;
     }
     else if (iff1_ && interrupt_requested_ && !just_after_ei_)
@@ -117,11 +117,11 @@ unsigned int GZ80::Tick()
         LeaveHalt();
         iff1_ = false;
         iff2_ = false;
-        StackPush(&PC);
-        PC.SetValue(0x0038);
+        StackPush(&PC_);
+        PC_.SetValue(0x0038);
         t_states_ += 13;
         IncreaseR();
-        XY.SetValue(PC.GetValue());
+        XY_.SetValue(PC_.GetValue());
         return t_states_;
     } 
 
@@ -142,12 +142,12 @@ void GZ80::RequestNMI()
     nmi_interrupt_requested_ = true;
 }
 
-void GZ80::SetIOPOrtsImpl(IOPortsIterface* io_ports_impl)
+void GZ80::SetIOPOrtsImpl(IOPortsInterface* io_ports_impl)
 {
     io_ports_impl_ = io_ports_impl;
 }
 
-void GZ80::SetMemoryImpl(MemoryIterface* memory_impl)
+void GZ80::SetMemoryImpl(MemoryInterface* memory_impl)
 {
     memory_impl_ = memory_impl;
 }
@@ -189,8 +189,8 @@ void GZ80::ExecuteOPCode()
             if (IsPrefixedInstruction())
             {
                 prefixed_cb_opcode_ = true;
-                prefixed_cb_value_ = memory_impl_->Read(PC.GetValue());
-                PC.Increment();
+                prefixed_cb_value_ = memory_impl_->Read(PC_.GetValue());
+                PC_.Increment();
             } 
             else
                 IncreaseR();
@@ -198,7 +198,7 @@ void GZ80::ExecuteOPCode()
             opcode = FetchOPCode();
 
 #ifdef GZ80_DISASM
-            u16 opcode_address = PC.GetValue() - 1;
+            u16 opcode_address = PC_.GetValue() - 1;
             
             if (!memory_impl_->IsDisassembled(opcode_address))
             {
@@ -232,7 +232,7 @@ void GZ80::ExecuteOPCode()
             opcode = FetchOPCode();
             
 #ifdef GZ80_DISASM
-            u16 opcode_address = PC.GetValue() - 1;
+            u16 opcode_address = PC_.GetValue() - 1;
             
             if (!memory_impl_->IsDisassembled(opcode_address))
             {
@@ -250,7 +250,7 @@ void GZ80::ExecuteOPCode()
             IncreaseR();
 
 #ifdef GZ80_DISASM
-            u16 opcode_address = PC.GetValue() - 1;
+            u16 opcode_address = PC_.GetValue() - 1;
             
             if (!memory_impl_->IsDisassembled(opcode_address))
             {
@@ -283,8 +283,8 @@ void GZ80::ExecuteOPCode()
 void GZ80::InvalidOPCode()
 {
 #ifdef DEBUG_GEARSYSTEM
-    u16 opcode_address = PC.GetValue() - 1;
-    u16 prefix_address = PC.GetValue() - 2;
+    u16 opcode_address = PC_.GetValue() - 1;
+    u16 prefix_address = PC_.GetValue() - 2;
     u8 opcode = memory_impl_->Read(opcode_address);
     u8 prefix = memory_impl_->Read(prefix_address);
 
@@ -311,7 +311,7 @@ void GZ80::InvalidOPCode()
 void GZ80::UndocumentedOPCode()
 {
 #ifdef DEBUG_GEARSYSTEM
-    u16 opcode_address = PC.GetValue() - 1;
+    u16 opcode_address = PC_.GetValue() - 1;
     u8 opcode = memory_impl_->Read(opcode_address);
 
     Log("--> ** UNDOCUMENTED OP Code (%X) at $%.4X -- %s", opcode, opcode_address, kOPCodeNames[opcode]);

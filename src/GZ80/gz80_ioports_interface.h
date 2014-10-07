@@ -6,11 +6,11 @@
 namespace gz80
 {
     
-class IOPortsIterface
+class IOPortsInterface
 {
 public:
-    IOPortsIterface() {};
-    virtual ~IOPortsIterface();
+    IOPortsInterface() {};
+    virtual ~IOPortsInterface();
     virtual u8 Input(u8 port) = 0;
     virtual void Output(u8 port, u8 value) = 0;
 };

@@ -40,29 +40,29 @@ public:
     unsigned int Tick();
     void RequestINT(bool assert);
     void RequestNMI();
-    void SetIOPOrtsImpl(IOPortsIterface* io_ports_impl);
-    void SetMemoryImpl(MemoryIterface* memory_impl);
+    void SetIOPOrtsImpl(IOPortsInterface* io_ports_impl);
+    void SetMemoryImpl(MemoryInterface* memory_impl);
 
 private:
     typedef void (GZ80::*OPCptr) (void);
     OPCptr opcodes_[256];
     OPCptr opcodes_cb_[256];
     OPCptr opcodes_ed_[256];
-    SixteenBitRegister AF;
-    SixteenBitRegister BC;
-    SixteenBitRegister DE;
-    SixteenBitRegister HL;
-    SixteenBitRegister AF2;
-    SixteenBitRegister BC2;
-    SixteenBitRegister DE2;
-    SixteenBitRegister HL2;
-    SixteenBitRegister IX;
-    SixteenBitRegister IY;
-    SixteenBitRegister SP;
-    SixteenBitRegister PC;
-    SixteenBitRegister XY;  // MEMPTR register for XY flags
-    EightBitRegister I;
-    EightBitRegister R;
+    SixteenBitRegister AF_;
+    SixteenBitRegister BC_;
+    SixteenBitRegister DE_;
+    SixteenBitRegister HL_;
+    SixteenBitRegister AF2_;
+    SixteenBitRegister BC2_;
+    SixteenBitRegister DE2_;
+    SixteenBitRegister HL2_;
+    SixteenBitRegister IX_;
+    SixteenBitRegister IY_;
+    SixteenBitRegister SP_;
+    SixteenBitRegister PC_;
+    SixteenBitRegister XY_;  // MEMPTR register for XY flags
+    EightBitRegister I_;
+    EightBitRegister R_;
     bool iff1_;
     bool iff2_;
     bool halt_;
@@ -75,8 +75,8 @@ private:
     bool nmi_interrupt_requested_;
     bool prefixed_cb_opcode_;
     u8 prefixed_cb_value_;
-    IOPortsIterface* io_ports_impl_;
-    MemoryIterface* memory_impl_;
+    IOPortsInterface* io_ports_impl_;
+    MemoryInterface* memory_impl_;
 
 private:
     u8 FetchOPCode();

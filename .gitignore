@@ -47,11 +47,12 @@ desktop.ini
 # Misc files
 *.txt
 *.ini
+*.cfg
 *.gen
 *.md
 *.bin
 *.zip
-*.gearboy
+*.geardrive
 
 # Qt Ignores
 moc_*.cpp

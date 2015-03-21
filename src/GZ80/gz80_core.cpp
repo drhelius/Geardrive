@@ -86,14 +86,14 @@ void GZ80::Reset()
 
 unsigned int GZ80::RunFor(unsigned int t_states)
 {
-    unsigned int count = t_states;
+    unsigned int count = 0;
     
-    while (count > 0)
+    while (count < t_states)
     {
-        count -= Tick();
+        count += Tick();
     }
     
-    return t_states - count;
+    return count - t_states;
 }
 
 unsigned int GZ80::Tick()

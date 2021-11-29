@@ -1,12 +1,13 @@
-Geardrive (WIP)
-=========
+Geardrive (currently in development)
+=======
 <b>Copyright &copy; 2014 by Ignacio Sanchez</b>
 
 ----------
+[![Build Status](https://travis-ci.org/drhelius/Gearnes.svg?branch=master)](https://travis-ci.org/drhelius/Gearnes)
+
+*This is a work in progress project, not intended to be used right now.*
 
 Geardrive is a Sega Genesis / Mega Drive emulator written in C++ that runs on iOS, Raspberry Pi, Mac, Windows and Linux.
-
-The main focus of this emulator is readability of source code with very high compatibility.
 
 Follow me on Twitter for updates: http://twitter.com/drhelius
 
